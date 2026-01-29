@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Compass</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <header class="topbar">
+      <h1>Digital Compass</h1>
+
+      <div class="top-actions">
+        <!-- Language Switch -->
+        <div class="lang-switch" role="group" aria-label="Language switch">
+          <button id="lang-de" class="lang-btn" type="button">DE</button>
+          <button id="lang-en" class="lang-btn" type="button">EN</button>
+        </div>
+
+        <!-- Home / Back -->
+        <button id="home-btn" class="home-btn" type="button">
+          ⬅ Zurück zur Übersicht
+        </button>
+      </div>
+    </header>
+
+    <p class="subtitle" id="subtitle">Wähle ein Thema</p>
+
+    <div class="theme-grid" id="theme-grid">
+      <!-- Labels filled by JS for i18n -->
+      <button type="button" class="theme-btn" data-theme="1"></button>
+      <button type="button" class="theme-btn" data-theme="2"></button>
+      <button type="button" class="theme-btn" data-theme="3"></button>
+      <button type="button" class="theme-btn" data-theme="4"></button>
+    </div>
+
+    <div id="progress-container" style="display:none;">
+      <div id="progress-bar"></div>
+    </div>
+
+    <div id="quiz-container"></div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> M2C</p>
+    <h6>
+      <a href="https://www.flaticon.com/de/kostenlose-icons/information">
+        Information Icons erstellt von Freepik - Flaticon
+      </a>
+    </h6>
+    <div class="footer-logos">
+      <img src="../assets/images/EU_Journeys_Logo.png" alt="Logo 1" class="footer-logo">
+      <img src="../assets/images/M2C_logo.jpg" alt="Logo 2" class="footer-logo">
+    </div>
+  </footer>
+
+  <!-- Exit Modal -->
+  <div id="exit-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h3 id="modal-title">Quiz verlassen?</h3>
+      <p id="modal-text">
+        Dein Fortschritt in diesem Thema geht verloren. Willst du wirklich zurück zur Übersicht?
+      </p>
+
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn-secondary" type="button">Abbrechen</button>
+        <button id="modal-confirm" class="btn-danger" type="button">Ja, verlassen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
+
