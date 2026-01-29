@@ -2422,7 +2422,7 @@
         wusstestText
           ? `
             <button class="info-toggle" id="info-toggle" type="button">
-              <img src="../assets/icons/information.png" alt="Info" class="quiz-info-icon">
+              <img src="assets/icons/information.png" alt="Info" class="quiz-info-icon">
               assets/icons
               ${escapeHTML(t("didYouKnow"))}
             </button>
