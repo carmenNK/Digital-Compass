@@ -23,6 +23,9 @@
   const modeAdultBtn = document.getElementById("mode-adult");
   const modeKidsBtn = document.getElementById("mode-kids");
 
+  if (modeAdultBtn) modeAdultBtn.onclick = () => { mode = "adult"; applyMode(); };
+  if (modeKidsBtn) modeKidsBtn.onclick = () => { mode = "kids"; applyMode(); };
+
   if (!container) return;
 
   // =========================
@@ -40,7 +43,7 @@
   const completedThemes = new Set();
 
   let lang = localStorage.getItem("dc_lang") || "de";
-  let mode = localStorage.getItem("dc_mode") || "adult"; // adult | kids
+  let mode = localStorage.getItem("dc_mode") || "adult";  // adult | kids
   document.body.classList.toggle("mode-kids", mode === "kids");
 
   // =========================
@@ -2768,6 +2771,21 @@ const questionBankKids = {
     if (langEN) langEN.classList.toggle("active", lang === "en");
   }
 
+  function applyMode() {
+    // classe CSS sur le body (pour les couleurs)
+    document.body.classList.toggle("mode-kids", mode === "kids");
+
+    // sauvegarde
+    localStorage.setItem("dc_mode", mode);
+
+    // IMPORTANT : on re-rend les labels (et éventuellement la banque de questions si tu en as 2)
+    renderStaticUI();
+
+    // si un quiz est en cours, re-rendre l’écran actuel
+    if (quizInProgress()) renderQuestion();
+  }
+
+
   // =========================
   // LANGUAGE SWITCH
   // =========================
@@ -3141,9 +3159,10 @@ const questionBankKids = {
   // INIT
   // =========================
   // Apply initial mode color + UI
-  applyMode(mode);
+  //applyMode(mode);
   setLanguage(lang);
 
   renderStaticUI();
+  applyMode();
   setHomeState();
 })();
