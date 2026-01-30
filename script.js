@@ -1,3 +1,4 @@
+
 (function () {
   // =========================
   // DOM
@@ -19,8 +20,10 @@
   const langDE = document.getElementById("lang-de");
   const langEN = document.getElementById("lang-en");
 
-  if (!container) return;
+  const modeAdultBtn = document.getElementById("mode-adult");
+  const modeKidsBtn = document.getElementById("mode-kids");
 
+  if (!container) return;
 
   // =========================
   // STATE
@@ -37,6 +40,8 @@
   const completedThemes = new Set();
 
   let lang = localStorage.getItem("dc_lang") || "de";
+  let mode = localStorage.getItem("dc_mode") || "adult"; // adult | kids
+  document.body.classList.toggle("mode-kids", mode === "kids");
 
   // =========================
   // i18n UI STRINGS
@@ -47,8 +52,11 @@
       backHome: "⬅ Zurück zur Übersicht",
       next: "Weiter",
       resultTitle: "Ergebnis",
+      overallTitle: "Gesamt-Ergebnis",
       source: "Quelle:",
       didYouKnow: "Wusstest du schon?",
+      correct: "✅ Richtig",
+      wrong: "❌ Falsch",
       modalTitle: "Quiz verlassen?",
       modalText:
         "Dein Fortschritt in diesem Thema geht verloren. Willst du wirklich zurück zur Übersicht?",
@@ -57,28 +65,30 @@
       questionCounter: (i, total) => `Frage ${i} von ${total}`,
       trueLabel: "Wahr",
       falseLabel: "Falsch",
-      correct: "✅ Richtig",
-      wrong: "❌ Falsch",
       nextTheme: "Nächstes Thema ➡",
       backOverview: "🏁 Zur Übersicht",
       scoreLine: (s, t) => `${s} / ${t} richtige Antworten`,
       emptyTheme: "Dieses Thema ist noch leer.",
-      finalTitle: "Dein Digital-Compass Ergebnis", 
 
-      finalTextStrong: "Mega! Du hast alle Themen durchgespielt. Wenn du magst: Such dir ein Thema raus und lies heute 1 kurze Quelle dazu (offizielle Seite, seriöses Medium oder ein Guide).",
-      finalTextMid: "Sehr gut! Du hast alle Themen geschafft. Nimm dir als nächsten Schritt 1 Thema und checke 1–2 seriöse Quellen — kleine Routine, großer Effekt.",
-      finalTextLow: "Starker Start! Du hast alle Themen gemacht. Der wichtigste Skill ist dranbleiben: nimm dir 1 Thema und lies/prüfe heute 10 Minuten — das bringt richtig viel.",
+      finalTextStrong:
+        "Mega! Du hast alle Themen durchgespielt. Wenn du magst: Such dir ein Thema raus und lies heute 1 kurze Quelle dazu (offizielle Seite, seriöses Medium oder ein Guide).",
+      finalTextMid:
+        "Sehr gut! Du hast alle Themen geschafft. Nimm dir als nächsten Schritt 1 Thema und checke 1–2 seriöse Quellen — kleine Routine, großer Effekt.",
+      finalTextLow:
+        "Starker Start! Du hast alle Themen gemacht. Der wichtigste Skill ist dranbleiben: nimm dir 1 Thema und lies/prüfe heute 10 Minuten — das bringt richtig viel.",
       finalLearnTip: "Tipp: Quelle + Datum + Zweck prüfen, bevor du teilst.",
       finalButton: "🏁 Zur Übersicht",
-
     },
     en: {
       subtitle: "Choose a theme",
       backHome: "⬅ Back to overview",
       next: "Next",
       resultTitle: "Results",
+      overallTitle: "Overall result",
       source: "Source:",
       didYouKnow: "Did you know?",
+      correct: "✅ Correct",
+      wrong: "❌ Wrong",
       modalTitle: "Leave the quiz?",
       modalText:
         "Your progress in this theme will be lost. Do you really want to go back to the overview?",
@@ -87,20 +97,19 @@
       questionCounter: (i, total) => `Question ${i} of ${total}`,
       trueLabel: "True",
       falseLabel: "False",
-      correct: "✅ Correct",
-      wrong: "❌ Wrong",
       nextTheme: "Next theme ➡",
       backOverview: "🏁 Back to overview",
       scoreLine: (s, t) => `${s} / ${t} correct answers`,
       emptyTheme: "This theme is empty for now.",
-      finalTitle: "Your Digital Compass Result",
 
-      finalTextStrong: "Awesome! You’ve completed all themes. If you like, pick one topic and read one short, reliable source today (official website, reputable media, or a guide).",
-      finalTextMid: "Well done! You finished all themes. As a next step, choose one topic and check 1–2 reliable sources — small habit, big impact.",
-      finalTextLow: "Great start! You completed all themes. The most important skill is staying curious: pick one topic and spend 10 minutes reading or checking information — it really pays off.",
-      finalLearnTip: "Tip: check the source, date, and purpose before you share.",
-      finalButton: "🏁 Back to overview"
-
+      finalTextStrong:
+        "Awesome! You completed all themes. Next step: pick 1 theme and read one short reliable source today (official site, reputable outlet, or a guide).",
+      finalTextMid:
+        "Great job! You finished all themes. Next: pick 1 theme and check 1–2 reliable sources — small habit, big impact.",
+      finalTextLow:
+        "Strong start! You finished all themes. The key skill is consistency: pick 1 theme and spend 10 minutes learning — it really helps.",
+      finalLearnTip: "Tip: Check source + date + purpose before you share.",
+      finalButton: "🏁 Back to overview",
     },
   };
 
@@ -122,7 +131,7 @@
   }
 
   function pickText(x) {
-    if (x && typeof x === "object") return x[lang] || x.de || "";
+    if (x && typeof x === "object") return x[lang] || x.de || x.en || "";
     return x || "";
   }
 
@@ -135,9 +144,69 @@
     return a;
   }
 
+  // For sources: always show a link (direct URL or a search link)
+  function escapeHTML(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  /**
+   * source peut être:
+   * - string: "GDPR Art. 15 – Right of access | https://..."
+   * - objet:  { label: "...", url: "https://..." }
+   * - array:  [{label,url}, ...] ou ["...", "..."]
+   */
+  function sourceToLink(source) {
+    if (!source) return "—";
+
+    // ✅ Array de sources
+    if (Array.isArray(source)) {
+      const parts = source
+        .map((s) => sourceToLink(s))
+        .filter((x) => x && x !== "—");
+      return parts.length ? parts.join(" · ") : "—";
+    }
+
+    // ✅ Objet {label, url}
+    if (typeof source === "object") {
+      const label = escapeHTML(source.label || source.title || "Source");
+      const url = source.url || source.href || "";
+      if (typeof url === "string" && url.trim()) {
+        const safeUrl = escapeHTML(url.trim());
+        return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+      }
+      return label;
+    }
+
+    // ✅ String (lien brut ou texte)
+    const text = String(source).trim();
+    if (!text) return "—";
+
+    // Si c’est juste une URL
+    if (/^https?:\/\/\S+$/i.test(text)) {
+      const safeUrl = escapeHTML(text);
+      return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeUrl}</a>`;
+    }
+
+    // Si format "Label | URL"
+    const m = text.match(/^(.*?)\s*\|\s*(https?:\/\/\S+)$/i);
+    if (m) {
+      const label = escapeHTML(m[1].trim() || "Source");
+      const url = escapeHTML(m[2].trim());
+      return `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+    }
+
+    // Sinon texte simple
+    return escapeHTML(text);
+  }
+
   // Optional: avoid repeats across runs (works only if questions have string id)
-  function storageKeyForTheme(id) {
-    return `dc_seen_${lang}_theme_${id}`;
+  function storageKeyForTheme(themeId) {
+    return `dc_seen_${mode}_${lang}_theme_${themeId}`;
   }
 
   function getSeenSet(themeId) {
@@ -160,7 +229,6 @@
 
   function pickRandomQuestions(themeId, pool, n) {
     const hasIds = pool.every((q) => typeof q.id === "string" && q.id.length);
-
     if (!hasIds) return shuffle(pool).slice(0, Math.min(n, pool.length));
 
     const seen = getSeenSet(themeId);
@@ -183,9 +251,9 @@
   }
 
   // =========================
-  // DATA (minimal stable)
+  // BANKS (Adults + Kids)
   // =========================
-  const questionBank = {
+const questionBankAdults = {
     1: {
       title: { de: "Datenschutz & Grundrechte", en: "Privacy & Data Rights" },
       summary: (ratio) => {
@@ -2388,6 +2456,250 @@
          ] },
   };
 
+
+
+const questionBankKids = {
+  1: {
+    title: { de: "Passwörter & Geräte", en: "Passwords & Devices" },
+    summary: (ratio) => {
+      if (ratio >= 0.8) return { de: { title: "🔒 Super geschützt!", text: "Du kennst starke Regeln für Passwörter und Geräte." },
+                               en: { title: "🔒 Super protected!", text: "You know strong rules for passwords and devices." } };
+      if (ratio >= 0.5) return { de: { title: "✨ Gute Basis!", text: "Du bist schon ziemlich sicher unterwegs — weiter so!" },
+                               en: { title: "✨ Nice base!", text: "You’re already pretty safe — keep going!" } };
+      return { de: { title: "🌱 Starker Start!", text: "Sicherheit ist Übung — du lernst gerade wichtige Tricks." },
+               en: { title: "🌱 Great start!", text: "Safety is practice — you’re learning important tricks." } };
+    },
+    questions: [
+      { id:"k1_q01", type:"mc",
+        q:{de:"Welches Passwort ist am besten?", en:"Which password is best?"},
+        choices:[
+          {de:"123456", en:"123456"},
+          {de:"meinname", en:"myname"},
+          {de:"Eine lange Passphrase (z.B. „Tiger!Mond7Kakao“)", en:"A long passphrase (e.g., “Tiger!Moon7Cocoa”)"},
+        ],
+        a:2,
+        explanation:{de:"Lange Passphrasen sind schwerer zu erraten und oft leichter zu merken.", en:"Long passphrases are harder to guess and often easier to remember."},
+        wusstest:{de:"Noch besser: für jede App ein anderes Passwort.", en:"Even better: a different password for every app."},
+        source:"klicksafe passwoerter",
+      },
+      { id:"k1_q02", type:"truefalse",
+        q:{de:"Du solltest dein Passwort mit Freund:innen teilen.", en:"You should share your password with friends."},
+        a:false,
+        explanation:{de:"Passwörter sind wie Schlüssel. Sie gehören nur dir (und ggf. Eltern/Erziehungsberechtigten).", en:"Passwords are like keys. They belong only to you (and maybe your parent/guardian)."},
+        wusstest:{de:"Wenn jemand dein Passwort kennt, kann er so tun, als wärst du das.", en:"If someone knows it, they can pretend to be you."},
+        source:"saferinternet passwords kids",
+      },
+      { id:"k1_q03", type:"scenario",
+        q:{de:"Dein Tablet ist weg. Was machst du zuerst?", en:"Your tablet is missing. What do you do first?"},
+        choices:[
+          {de:"Nichts sagen", en:"Say nothing"},
+          {de:"Einer erwachsenen Person Bescheid sagen", en:"Tell a trusted adult"},
+          {de:"Passwort im Klassenchat posten", en:"Post your password in class chat"},
+        ],
+        a:1,
+        explanation:{de:"Sag es sofort einer erwachsenen Person. Dann kann man sperren/finden und Accounts schützen.", en:"Tell a trusted adult right away so you can lock/find it and protect accounts."},
+        wusstest:{de:"Viele Geräte haben „Mein Gerät finden“.", en:"Many devices have “Find my device” features."},
+        source:"BSI kinder smartphone sicherheit",
+      },
+      { id:"k1_q04", type:"mc",
+        q:{de:"Was ist bei einem App-Download schlau?", en:"What’s smart when downloading an app?"},
+        choices:[
+          {de:"Einfach alles installieren", en:"Install anything"},
+          {de:"Bewertungen und Berechtigungen anschauen", en:"Check reviews and permissions"},
+          {de:"Immer „Ja“ zu allen Zugriffen", en:"Always allow all access"},
+        ],
+        a:1,
+        explanation:{de:"Schau dir Bewertungen und Berechtigungen an. Eine Taschenlampe braucht z.B. keine Kontakte.", en:"Check reviews and permissions. A flashlight shouldn’t need your contacts."},
+        wusstest:{de:"Wenn etwas komisch ist: frag eine erwachsene Person.", en:"If something feels off: ask an adult."},
+        source:"klicksafe apps kinder",
+      },
+    ],
+  },
+
+  2: {
+    title: { de: "Chatten & Freundschaft", en: "Chatting & Friendship" },
+    summary: (ratio) => {
+      if (ratio >= 0.8) return { de:{title:"💬 Chat-Profi!", text:"Du weißt, wie man freundlich und sicher chattet."},
+                               en:{title:"💬 Chat pro!", text:"You know how to chat kindly and safely."} };
+      if (ratio >= 0.5) return { de:{title:"👍 Gut unterwegs!", text:"Du erkennst viele Situationen — bleib aufmerksam."},
+                               en:{title:"👍 Doing well!", text:"You spot many situations — stay aware."} };
+      return { de:{title:"🌈 Du lernst!", text:"Online-Freundschaft kann tricky sein — du wirst besser."},
+               en:{title:"🌈 You’re learning!", text:"Online friendship can be tricky — you’re improving."} };
+    },
+    questions: [
+      { id:"k2_q01", type:"scenario",
+        q:{de:"Jemand schreibt: „Schick mir ein Foto, sonst…“. Was ist richtig?", en:"Someone says: “Send me a photo or else…”. What’s right?"},
+        choices:[
+          {de:"Sofort schicken", en:"Send it"},
+          {de:"Nicht schicken, Screenshot machen, einer erwachsenen Person zeigen", en:"Don’t send, take a screenshot, tell a trusted adult"},
+          {de:"Zurück drohen", en:"Threaten back"},
+        ],
+        a:1,
+        explanation:{de:"Das ist Druck/Erpressung. Nicht reagieren wie gefordert — Hilfe holen.", en:"That’s pressure/blackmail. Don’t do what they demand — get help."},
+        wusstest:{de:"Du bist nicht schuld. Hilfe holen ist mutig.", en:"It’s not your fault. Getting help is brave."},
+        source:"klicksafe cybermobbing hilfe",
+      },
+      { id:"k2_q02", type:"mc",
+        q:{de:"Was ist ein gutes Zeichen bei neuen Online-Freund:innen?", en:"What’s a good sign with new online friends?"},
+        choices:[
+          {de:"Sie respektieren Grenzen und sagen nicht „geheim halten“", en:"They respect boundaries and don’t say “keep it secret”"},
+          {de:"Sie wollen sofort deine Adresse", en:"They want your address fast"},
+          {de:"Sie werden wütend, wenn du nicht antwortest", en:"They get angry if you don’t reply"},
+        ],
+        a:0,
+        explanation:{de:"Gute Kontakte respektieren Grenzen. Geheimhaltung + Druck ist eine Red Flag.", en:"Good contacts respect boundaries. Secrecy + pressure is a red flag."},
+        wusstest:{de:"Online musst du niemandem persönliche Daten geben.", en:"Online you don’t owe anyone personal data."},
+        source:"saferinternet online friends kids",
+      },
+      { id:"k2_q03", type:"truefalse",
+        q:{de:"Wenn dich jemand beleidigt, ist es schlau, genauso zurück zu beleidigen.", en:"If someone insults you, it’s smart to insult back."},
+        a:false,
+        explanation:{de:"Zurück beleidigen macht es oft schlimmer. Besser: blockieren, melden, Hilfe holen.", en:"Insulting back often makes it worse. Better: block, report, get help."},
+        wusstest:{de:"Beweise sichern (Screenshots) kann helfen.", en:"Saving evidence (screenshots) can help."},
+        source:"klicksafe cybermobbing",
+      },
+      { id:"k2_q04", type:"scenario",
+        q:{de:"Du bekommst eine Nachricht von einer unbekannten Nummer mit einem Link. Was tust du?", en:"Unknown number sends you a link. What do you do?"},
+        choices:[
+          {de:"Link klicken", en:"Click"},
+          {de:"Nicht klicken und fragen/zeigen einer erwachsenen Person", en:"Don’t click; ask a trusted adult"},
+          {de:"Link weiterleiten", en:"Forward it"},
+        ],
+        a:1,
+        explanation:{de:"Unbekannte Links können gefährlich sein. Erst prüfen lassen.", en:"Unknown links can be risky. Check first."},
+        wusstest:{de:"Manchmal wollen Links dich auf Fake-Seiten locken.", en:"Sometimes links lead to fake sites."},
+        source:"BSI phishing kinder",
+      },
+    ],
+  },
+
+  3: {
+    title: { de: "Fake News & Videos", en: "Fake News & Videos" },
+    summary: (ratio) => {
+      if (ratio >= 0.8) return { de:{title:"🕵️ Fakten-Detektiv!", text:"Du prüfst, bevor du glaubst oder teilst."},
+                               en:{title:"🕵️ Fact detective!", text:"You check before you believe or share."} };
+      if (ratio >= 0.5) return { de:{title:"✅ Guter Check!", text:"Du bist skeptisch — das ist super online."},
+                               en:{title:"✅ Good checks!", text:"You’re skeptical — that’s great online."} };
+      return { de:{title:"🌟 Neugierig bleiben!", text:"Wenn du unsicher bist: prüfen oder fragen."},
+               en:{title:"🌟 Stay curious!", text:"If unsure: verify or ask."} };
+    },
+    questions: [
+      { id:"k3_q01", type:"mc",
+        q:{de:"Ein Video sagt: „Morgen fällt die Schule für alle aus!“ – ohne Quelle. Was machst du?", en:"A video says: “School is canceled for everyone tomorrow!” — no source. What do you do?"},
+        choices:[
+          {de:"Sofort teilen", en:"Share now"},
+          {de:"Auf der Schul-Website/bei Lehrer:innen nachsehen", en:"Check the school website / ask teachers"},
+          {de:"Glauben, weil es viele Likes hat", en:"Believe it because of likes"},
+        ],
+        a:1,
+        explanation:{de:"Wichtige Infos checkt man bei offiziellen Quellen.", en:"Important info should be checked with official sources."},
+        wusstest:{de:"Likes = Aufmerksamkeit, nicht Wahrheit.", en:"Likes = attention, not truth."},
+        source:"klicksafe fake news kinder",
+      },
+      { id:"k3_q02", type:"truefalse",
+        q:{de:"Ein Screenshot ist immer ein Beweis.", en:"A screenshot is always proof."},
+        a:false,
+        explanation:{de:"Screenshots kann man fälschen oder aus dem Kontext reißen. Besser: Original suchen.", en:"Screenshots can be faked or out of context. Better: find the original."},
+        wusstest:{de:"Frag: Woher kommt das? Wann? Wer sagt das?", en:"Ask: where from? when? who says it?"},
+        source:"saferinternet fact checking kids",
+      },
+      { id:"k3_q03", type:"scenario",
+        q:{de:"Du siehst ein mega-schockendes Video. Was ist ein guter Schritt?", en:"You see a super shocking video. What’s a good step?"},
+        choices:[
+          {de:"Sofort weiter schicken", en:"Forward it"},
+          {de:"Kurz Pause machen und prüfen, ob es echt ist", en:"Pause and check if it’s real"},
+          {de:"Schreiben: „OMG!!!“", en:"Comment: “OMG!!!”"},
+        ],
+        a:1,
+        explanation:{de:"Starke Gefühle machen es leichter, auf Fakes reinzufallen. Erst kurz stoppen.", en:"Strong emotions make it easier to fall for fakes. Pause first."},
+        wusstest:{de:"Wenn du unsicher bist: frag eine erwachsene Person.", en:"If unsure: ask a trusted adult."},
+        source:"klicksafe emotional posts",
+      },
+      { id:"k3_q04", type:"mc",
+        q:{de:"Was kann man bei Bildern machen, um mehr Infos zu finden?", en:"What can you do with images to learn more?"},
+        choices:[
+          {de:"Reverse Image Search (Bildersuche)", en:"Reverse image search"},
+          {de:"Nur raten", en:"Just guess"},
+          {de:"Nichts, das geht nicht", en:"Nothing, impossible"},
+        ],
+        a:0,
+        explanation:{de:"Eine Bildersuche kann zeigen, wo das Bild schon mal benutzt wurde.", en:"Reverse image search can show where an image appeared before."},
+        wusstest:{de:"Manche Bilder sind alt, aber werden als „neu“ gepostet.", en:"Some images are old but posted as “new”."},
+        source:"klicksafe reverse image search",
+      },
+    ],
+  },
+
+  4: {
+    title: { de: "Privatsphäre & Fotos", en: "Privacy & Photos" },
+    summary: (ratio) => {
+      if (ratio >= 0.8) return { de:{title:"🛡️ Privatsphäre-Star!", text:"Du weißt, was du teilen willst — und was nicht."},
+                               en:{title:"🛡️ Privacy star!", text:"You know what to share — and what not."} };
+      if (ratio >= 0.5) return { de:{title:"✨ Gute Regeln!", text:"Du hast schon starke Grenzen. Weiter üben!" },
+                               en:{title:"✨ Good rules!", text:"You have strong boundaries. Keep practicing!"} };
+      return { de:{title:"🌱 Guter Start!", text:"Privatsphäre ist wichtig — du lernst gerade die besten Regeln."},
+               en:{title:"🌱 Great start!", text:"Privacy matters — you’re learning the best rules."} };
+    },
+    questions: [
+      { id:"k4_q01", type:"scenario",
+        q:{de:"Du willst ein Foto posten, auf dem auch andere Kinder sind. Was ist richtig?", en:"You want to post a photo that shows other kids. What’s right?"},
+        choices:[
+          {de:"Einfach posten", en:"Just post"},
+          {de:"Erst fragen/Einverständnis holen", en:"Ask first / get permission"},
+          {de:"Nur einen lustigen Filter drauf", en:"Just add a filter"},
+        ],
+        a:1,
+        explanation:{de:"Vor dem Posten andere fragen ist fair und schützt Privatsphäre.", en:"Asking before posting is fair and protects privacy."},
+        wusstest:{de:"Auch Erwachsene sollten gefragt werden, wenn sie auf dem Bild sind.", en:"Adults should be asked too if they’re in the photo."},
+        source:"klicksafe fotos teilen",
+      },
+      { id:"k4_q02", type:"mc",
+        q:{de:"Welche Info solltest du NICHT öffentlich teilen?", en:"Which info should you NOT share publicly?"},
+        choices:[
+          {de:"Dein Lieblingsspiel", en:"Your favorite game"},
+          {de:"Deine Adresse + Schule", en:"Your address + school"},
+          {de:"Dein Lieblingsessen", en:"Your favorite food"},
+        ],
+        a:1,
+        explanation:{de:"Adresse/Schule sind sehr privat und können gefährlich sein.", en:"Address/school are very private and can be dangerous."},
+        wusstest:{de:"Teile Standort nur mit Menschen, denen du vertraust.", en:"Share location only with people you trust."},
+        source:"saferinternet privacy kids",
+      },
+      { id:"k4_q03", type:"truefalse",
+        q:{de:"Wenn etwas online ist, kann es sehr lange bleiben (auch wenn du es löschst).", en:"If something is online, it can stay for a long time (even if you delete it)."},
+        a:true,
+        explanation:{de:"Andere können Screenshots machen oder es weiter teilen.", en:"Others can take screenshots or re-share it."},
+        wusstest:{de:"Frag dich: Würde ich das morgen noch ok finden?", en:"Ask: would I still be okay with this tomorrow?"},
+        source:"klicksafe footprint kinder",
+      },
+    ],
+  },
+};
+
+
+  // Active bank depends on mode
+  function getActiveBank() {
+    return mode === "kids" ? questionBankKids : questionBankAdults;
+  }
+
+  function applyMode(newMode) {
+    mode = newMode === "kids" ? "kids" : "adult";
+    localStorage.setItem("dc_mode", mode);
+
+    // Brand color switch
+    document.documentElement.style.setProperty(
+      "--brand",
+      mode === "kids" ? "#ff9900" : "#004284"
+    );
+
+    if (modeAdultBtn) modeAdultBtn.classList.toggle("active", mode === "adult");
+    if (modeKidsBtn) modeKidsBtn.classList.toggle("active", mode === "kids");
+
+    // Back to home when changing mode to avoid mixing state
+    setHomeState();
+    renderStaticUI();
+  }
+
   // =========================
   // MODAL
   // =========================
@@ -2416,7 +2728,6 @@
     totalCorrect = 0;
     completedThemes.clear();
 
-
     if (themeGrid) themeGrid.style.display = "grid";
     if (subtitle) subtitle.style.display = "block";
     if (progressContainer) progressContainer.style.display = "none";
@@ -2443,11 +2754,14 @@
     if (modalCancel) modalCancel.textContent = t("cancel");
     if (modalConfirm) modalConfirm.textContent = t("confirmLeave");
 
-    // Fill theme button labels using questionBank titles
+    // Theme labels based on active bank
+    const bank = getActiveBank();
     document.querySelectorAll(".theme-btn").forEach((b) => {
       const id = Number(b.dataset.theme);
-      const bank = questionBank[id];
-      b.textContent = bank ? pickText(bank.title) : "";
+      const pack = bank[id];
+      b.textContent = pack ? pickText(pack.title) : "";
+      b.disabled = !pack || !pack.questions || pack.questions.length === 0;
+      b.classList.toggle("disabled", b.disabled);
     });
 
     if (langDE) langDE.classList.toggle("active", lang === "de");
@@ -2458,9 +2772,9 @@
   // LANGUAGE SWITCH
   // =========================
   function setLanguage(newLang) {
-    lang = newLang;
+    lang = newLang === "en" ? "en" : "de";
     localStorage.setItem("dc_lang", lang);
-    document.documentElement.setAttribute("lang", lang === "de" ? "de" : "en");
+    document.documentElement.setAttribute("lang", lang);
     renderStaticUI();
 
     // re-render current screen without losing progress
@@ -2469,6 +2783,12 @@
 
   if (langDE) langDE.onclick = () => setLanguage("de");
   if (langEN) langEN.onclick = () => setLanguage("en");
+
+  // =========================
+  // MODE SWITCH
+  // =========================
+  if (modeAdultBtn) modeAdultBtn.onclick = () => applyMode("adult");
+  if (modeKidsBtn) modeKidsBtn.onclick = () => applyMode("kids");
 
   // =========================
   // EVENTS (Home + Modal)
@@ -2491,7 +2811,7 @@
   if (themeGrid) {
     themeGrid.addEventListener("click", (e) => {
       const btn = e.target.closest(".theme-btn");
-      if (!btn) return;
+      if (!btn || btn.disabled) return;
       const id = Number(btn.dataset.theme);
       startTheme(id);
     });
@@ -2501,32 +2821,29 @@
   // START THEME
   // =========================
   function startTheme(id) {
-    const bank = questionBank[id];
-    if (!bank) return;
+    const bank = getActiveBank();
+    const pack = bank[id];
+    if (!pack) return;
+
+    if (!pack.questions || pack.questions.length === 0) {
+      container.innerHTML = `<p style="text-align:center;">${escapeHTML(
+        t("emptyTheme")
+      )}</p>`;
+      return;
+    }
+
     if (themeGrid) themeGrid.style.display = "none";
     if (subtitle) subtitle.style.display = "none";
+    if (progressContainer) progressContainer.style.display = "block";
     if (homeBtn) homeBtn.style.display = "inline-flex";
-    if (progressContainer) progressContainer.style.display = "none"; 
 
     currentTheme = id;
     index = 0;
     score = 0;
-    selectedQuestions = [];
-
-    if (!bank.questions || bank.questions.length === 0) {
-      container.innerHTML = `
-        <p style="text-align:center;">
-          ${escapeHTML(t("emptyTheme"))}
-        </p>
-      `;
-      return;
-    }
-
-    if (progressContainer) progressContainer.style.display = "block";
 
     selectedQuestions = pickRandomQuestions(
       id,
-      bank.questions,
+      pack.questions,
       QUESTIONS_PER_THEME
     );
 
@@ -2534,21 +2851,24 @@
     renderQuestion();
   }
 
-
   // =========================
   // RENDER QUESTION
   // =========================
   function renderHeader() {
-    const bank = questionBank[currentTheme];
+    const bank = getActiveBank();
+    const pack = bank[currentTheme];
     return `
-      <h2>${escapeHTML(pickText(bank.title))}</h2>
-      <p class="counter">${escapeHTML(t("questionCounter", index + 1, selectedQuestions.length))}</p>
+      <h2>${escapeHTML(pickText(pack.title))}</h2>
+      <p class="counter">${escapeHTML(
+        t("questionCounter", index + 1, selectedQuestions.length)
+      )}</p>
     `;
   }
 
   function renderQuestion() {
-    const bank = questionBank[currentTheme];
-    if (!bank) return;
+    const bank = getActiveBank();
+    const pack = bank[currentTheme];
+    if (!pack) return;
 
     const q = selectedQuestions[index];
     if (!q) return;
@@ -2630,25 +2950,38 @@
     const q = selectedQuestions[index];
     const correct = selected === q.a;
 
-    container.querySelectorAll("button").forEach((b) => (b.disabled = true));
+    // Désactiver uniquement les choix (évite d’impacter d’autres boutons si un jour tu changes la structure)
+    const choicesWrap = container.querySelector("#choices");
+    if (choicesWrap) {
+      choicesWrap.querySelectorAll("button").forEach((b) => (b.disabled = true));
+    } else {
+      // fallback
+      container.querySelectorAll("button").forEach((b) => (b.disabled = true));
+    }
+
     btn.classList.add(correct ? "correct" : "incorrect");
+
     if (correct) score++;
     totalAnswered++;
     if (correct) totalCorrect++;
 
-    setTimeout(() => renderExplanationScreen(q, correct), 250);
+    // ✅ IMPORTANT : on affiche l'explication tout de suite
+    renderExplanationScreen(q, correct);
   }
+
 
   function renderExplanationScreen(q, correct) {
     const explanationText = pickText(q.explanation || "");
     const wusstestText = pickText(q.wusstest || "");
-    
-    const source = q.source;
 
+    const src = sourceToLink(q.source || "");
+    const srcHTML = src.url
+      ? `<a href="${escapeHTML(src.url)}" target="_blank" rel="noreferrer">${escapeHTML(src.label)}</a>`
+      : escapeHTML(src.label);
 
     container.innerHTML = `
       <p class="result ${correct ? "correct-text" : "incorrect-text"}">
-          ${escapeHTML(correct ? t("correct") : t("wrong"))}
+        ${escapeHTML(correct ? t("correct") : t("wrong"))}
       </p>
 
       <p class="explanation-text">${escapeHTML(explanationText)}</p>
@@ -2663,7 +2996,7 @@
         wusstestText
           ? `
             <button class="info-toggle" id="info-toggle" type="button">
-              <img src="assets/icons/information.png" alt="Info" class="quiz-info-icon">
+              <img src="../assets/icons/information.png" alt="Info" class="quiz-info-icon">
               ${escapeHTML(t("didYouKnow"))}
             </button>
 
@@ -2675,24 +3008,17 @@
           : ""
       }
 
-      <p class="source">
-        ${escapeHTML(t("source"))}
-        ${
-          source?.url
-            ? `<a href="${escapeHTML(source.url)}" target="_blank" rel="noopener noreferrer">
-                ${escapeHTML(source.label || source.url)}
-              </a>`
-            : "—"
-        }
-      </p>
+      <p class="source">${escapeHTML(t("source"))} ${sourceToLink(q.source)}</p>
 
-
-      <button id="next-btn" class="next-btn" type="button">${escapeHTML(t("next"))}</button>
+      <button id="next-btn" class="next-btn" type="button">${escapeHTML(
+        t("next")
+      )}</button>
     `;
 
     const toggleBtn = document.getElementById("info-toggle");
     const infoCard = document.getElementById("info-card");
-    if (toggleBtn && infoCard) toggleBtn.onclick = () => infoCard.classList.toggle("hidden");
+    if (toggleBtn && infoCard)
+      toggleBtn.onclick = () => infoCard.classList.toggle("hidden");
 
     document.getElementById("next-btn").onclick = () => {
       index++;
@@ -2706,25 +3032,35 @@
   // =========================
   function showThemeSummary() {
     completedThemes.add(currentTheme);
-    const bank = questionBank[currentTheme];
+
+    const bank = getActiveBank();
+    const pack = bank[currentTheme];
     const total = selectedQuestions.length;
     const ratio = total ? score / total : 0;
 
-    const pack = bank.summary(ratio);
-    const msg = pack[lang];
+    const summaryPack = pack.summary ? pack.summary(ratio) : null;
+    const msg = summaryPack ? summaryPack[lang] : { title: "", text: "" };
 
-    const ALL_THEMES = [1,2,3,4];
-    const allDone = ALL_THEMES.every(id => completedThemes.has(id));
+    if (progressBar) progressBar.style.width = "100%";
+
+    const themeIds = Object.keys(bank)
+      .map((k) => Number(k))
+      .filter((n) => Number.isFinite(n))
+      .sort((a, b) => a - b);
+
+    const allDone = themeIds.length
+      ? themeIds.every((id) => completedThemes.has(id))
+      : false;
 
     if (allDone) {
       showFinalSummary();
       return;
     }
 
-    if (progressBar) progressBar.style.width = "100%";
-
-    const next = currentTheme + 1;
-    const hasNext = Boolean(questionBank[next] && questionBank[next].questions && questionBank[next].questions.length);
+    // next existing theme
+    const currentIndex = themeIds.indexOf(currentTheme);
+    const nextTheme = currentIndex >= 0 ? themeIds[currentIndex + 1] : null;
+    const hasNext = nextTheme != null;
 
     container.innerHTML = `
       <h2>${escapeHTML(t("resultTitle"))}</h2>
@@ -2734,7 +3070,9 @@
         <p>${escapeHTML(msg.text)}</p>
       </div>
 
-      <p class="score"><strong>${escapeHTML(t("scoreLine", score, total))}</strong></p>
+      <p class="score"><strong>${escapeHTML(
+        t("scoreLine", score, total)
+      )}</strong></p>
 
       <button id="next-theme-btn" class="next-btn" type="button">
         ${escapeHTML(hasNext ? t("nextTheme") : t("backOverview"))}
@@ -2742,7 +3080,7 @@
     `;
 
     document.getElementById("next-theme-btn").onclick = () => {
-      if (hasNext) startTheme(next);
+      if (hasNext) startTheme(nextTheme);
       else goHome();
     };
   }
@@ -2750,51 +3088,45 @@
   function showFinalSummary() {
     const ratio = totalAnswered ? totalCorrect / totalAnswered : 0;
 
-    let title, text;
+    let title;
+    let text;
+
     if (ratio >= 0.8) {
       title = lang === "de" ? "🚀 Stark! Du hast einen richtig guten Kompass." : "🚀 Strong! You’ve got a solid compass.";
-      text = lang === "de"
-        ? "Mega! Du hast alle 4 Themen durchgespielt. Der nächste Schritt: Such dir 1 Thema raus und lies heute 1 kurze seriöse Quelle dazu (offizielle Seite, seriöses Medium oder ein Guide)."
-        : "Awesome! You finished all 4 themes. Next step: pick 1 theme and read one short reliable source today (official site, reputable outlet, or a guide).";
+      text = UI[lang].finalTextStrong;
     } else if (ratio >= 0.5) {
       title = lang === "de" ? "✨ Sehr gut! Du bist auf dem richtigen Weg." : "✨ Great job! You’re on the right track.";
-      text = lang === "de"
-        ? "Sehr gut! Jetzt lohnt sich eine kleine Routine: vor dem Teilen kurz Quelle + Datum + Kontext checken. Das macht dich sofort sicherer."
-        : "Great! A small habit pays off: before sharing, quickly check source + date + context. That makes you instantly safer.";
+      text = UI[lang].finalTextMid;
     } else {
       title = lang === "de" ? "🌱 Starker Start — weiter so!" : "🌱 Strong start — keep going!";
-      text = lang === "de"
-        ? "Du hast alle 4 Themen gemacht — das zählt! Der wichtigste Skill ist dranbleiben: nimm dir 1 Thema und informiere dich 10 Minuten. Kleine Schritte → großer Effekt."
-        : "You completed all 4 themes — that matters! The key skill is consistency: pick 1 theme and spend 10 minutes learning. Small steps → big impact.";
+      text = UI[lang].finalTextLow;
     }
 
     container.innerHTML = `
-      <h2>${escapeHTML(lang === "de" ? "Gesamt-Ergebnis" : "Overall result")}</h2>
+      <h2>${escapeHTML(t("overallTitle"))}</h2>
 
       <div class="section-summary">
         <h3>${escapeHTML(title)}</h3>
         <p>${escapeHTML(text)}</p>
+
         <p style="margin-top:10px;"><strong>${escapeHTML(
           lang === "de"
             ? `Gesamt: ${totalCorrect} / ${totalAnswered} richtig`
             : `Overall: ${totalCorrect} / ${totalAnswered} correct`
         )}</strong></p>
+
         <p style="margin-top:10px; color:#444;">
-          ${escapeHTML(lang === "de"
-            ? "Tipp: Quelle + Datum + Zweck prüfen, bevor du teilst."
-            : "Tip: Check source + date + purpose before you share."
-          )}
+          ${escapeHTML(UI[lang].finalLearnTip)}
         </p>
       </div>
 
       <button id="final-home-btn" class="next-btn" type="button">
-        ${escapeHTML(lang === "de" ? "🏁 Zur Übersicht" : "🏁 Back to overview")}
+        ${escapeHTML(UI[lang].finalButton)}
       </button>
     `;
 
     document.getElementById("final-home-btn").onclick = () => goHome();
   }
-
 
   // =========================
   // PROGRESS
@@ -2808,6 +3140,10 @@
   // =========================
   // INIT
   // =========================
+  // Apply initial mode color + UI
+  applyMode(mode);
+  setLanguage(lang);
+
   renderStaticUI();
   setHomeState();
 })();

@@ -1,3 +1,16 @@
+:root{
+  --brand: #004284;           /* Adult = bleu */
+  --brand-soft: #f0f4ff;
+  --brand-border: #cfd8ff;
+}
+
+body.mode-kids{
+  --brand: #ff9900;           /* Kids = orange */
+  --brand-soft: #fff3e0;
+  --brand-border: #ffd699;
+}
+
+
 body {
   font-family: Arial, sans-serif;
   background: #f4f4f4;
@@ -72,7 +85,7 @@ h1 {
 }
 
 .lang-btn.active {
-  background: #004284;
+  background: var(--brand);
   color: #fff;
 }
 
@@ -82,7 +95,7 @@ h1 {
   margin: 14px auto;
   font-size: clamp(15px, 1.2vw, 18px);
   padding: clamp(10px, 1.2vw, 14px) clamp(14px, 1.6vw, 20px);
-  background: #004284;
+  background: var(--brand);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -131,15 +144,15 @@ button:disabled {
 
 
 .theme-grid button {
-  background: #f0f4ff;
+   background: var(--brand-soft);
+  border: 1px solid var(--brand-border);
   color: #333;
-  border: 1px solid #cfd8ff;
   font-size: 14px;
   padding: 14px;
 }
 
 .theme-grid button:hover {
-  background: #004284;
+  background: var(--brand);
   color: #fff;
 }
 
@@ -155,7 +168,7 @@ button:disabled {
 #progress-bar {
   height: 8px;
   width: 0%;
-  background: #004284;
+  background: var(--brand);
   transition: width 0.3s ease;
 }
 
@@ -245,7 +258,7 @@ button:disabled {
 
 .info-card {
   background: #f9fbff;
-  border-left: 4px solid #004284;
+  border-left: 4px solid var(--brand);
   padding: 12px 14px;
   margin: 10px 0 14px 0;
   border-radius: 8px;
@@ -256,7 +269,7 @@ button:disabled {
 .info-card strong {
   display: block;
   margin-bottom: 6px;
-  color: #004284;
+  color: var(--brand);
 }
 
 /* ===== Small layout helpers ===== */
@@ -277,7 +290,7 @@ button:disabled {
 .home-btn {
   background: none !important;
   border: none !important;
-  color: #004284 !important;
+  color: var(--brand) !important;
   font-size: 14px;
   cursor: pointer;
   margin: 0;
@@ -386,7 +399,7 @@ button:disabled {
 /* ===== Theme summary card ===== */
 .section-summary {
   background: #f0f6ff;
-  border-left: 4px solid #004284;
+  border-left: 4px solid var(--brand);
   padding: 14px 16px;
   border-radius: 10px;
   margin: 14px 0;
@@ -394,7 +407,7 @@ button:disabled {
 
 .section-summary h3 {
   margin: 0 0 8px;
-  color: #004284;
+  color: var(--brand);
   font-size: 16px;
 }
 
@@ -402,4 +415,46 @@ button:disabled {
   margin: 0;
   color: #333;
   line-height: 1.45;
+}
+
+
+/* ===== Mode switch (Adult/Kids) ===== */
+.mode-switch{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 6px 0 18px;
+}
+
+.mode-btn{
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 999px;
+  background: #f2f4f8 !important;
+  color: #222 !important;
+  border: 1px solid #e3e7ef !important;
+}
+
+.mode-btn.active{
+  background: var(--brand) !important;
+  color: #fff !important;
+  border-color: var(--brand) !important;
+}
+
+/* ===== Footer logos ===== */
+.footer-logos{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.footer-logos img{
+  height: 42px;
+  width: auto;
+  object-fit: contain;
 }
