@@ -21,6 +21,7 @@
 
   if (!container) return;
 
+
   // =========================
   // STATE
   // =========================
@@ -225,8 +226,8 @@
             en: "Online identifiers (cookies/IDs) can also be personal data if they make you identifiable.",
           },
           source: {
-            label: "GDPR Art. 15 – Right of access",
-            url: "https://gdpr-info.eu/art-15-gdpr/"
+            label: "GDPR Art. 4 – Definitions (personal data)",
+            url: "https://gdpr-info.eu/art-4-gdpr/"
           },
           image: "",
           explanationImage: "",
@@ -246,8 +247,8 @@
             en: "“IP = anonymous” is a myth. ISP logs can enable linking.",
           },
           source: {
-            label: "GDPR Art. 14 – Right of access",
-            url: "GDPR/DSGVO Art. 4 (Definition)"
+            label: "GDPR Art. 4 – Definitions (personal data)",
+            url: "https://gdpr-info.eu/art-4-gdpr/"
           },
           image: "",
           explanationImage: "",
@@ -271,7 +272,10 @@
             de: "Auch Formularfelder: Wenn’s nicht gebraucht wird, sollte es nicht Pflicht sein.",
             en: "Also forms: if it’s not needed, it shouldn’t be required.",
           },
-          source: "GDPR/DSGVO Art. 5(1)(c)",
+          source: {
+            label: "GDPR/DSGVO Art. 5(1)(c)",
+            url: "https://gdpr-info.eu/art-5-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -294,7 +298,10 @@
             de: "Einwilligung muss freiwillig sein und darf nicht erzwungen werden.",
             en: "Consent must be freely given and not forced.",
           },
-          source: "GDPR/DSGVO Art. 6",
+          source: {
+            label: "GDPR/DSGVO Art. 6",
+            url: "https://gdpr-info.eu/art-6-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -317,7 +324,10 @@
             de: "Du kannst oft auch eine Kopie der Daten verlangen.",
             en: "You can often request a copy of your data as well.",
           },
-          source: "GDPR/DSGVO Art. 15",
+          source: {
+            label: "GDPR/DSGVO Art. 15",
+            url: "https://gdpr-info.eu/art-15-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -340,7 +350,10 @@
             de: "Berechtigungen kannst du jederzeit in den Einstellungen entziehen.",
             en: "You can revoke permissions anytime in settings.",
           },
-          source: "GDPR Principles (Data minimisation), app permissions best practice",
+          source: {
+            label: "GDPR Principles (Data minimisation), app permissions best practice",
+            url: "https://rm.coe.int/16809382f9"
+          },
           image: "",
           explanationImage: "",
         },
@@ -363,7 +376,10 @@
             de: "Fake-Daten können später Probleme machen (z. B. Konto-Wiederherstellung).",
             en: "Fake data can backfire later (e.g., account recovery).",
           },
-          source: "GDPR/DSGVO Art. 5(1)(c)",
+          source: {
+            label: "GDPR/DSGVO Art. 5(1)(c)",
+            url: "https://gdpr-info.eu/art-5-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -381,7 +397,10 @@
             de: "Widerruf stoppt Verarbeitung auf Einwilligungsbasis, aber nicht immer jede Speicherung (z. B. gesetzliche Pflicht).",
             en: "Withdrawal stops consent-based processing, but not always all storage (e.g., legal duties).",
           },
-          source: "GDPR/DSGVO Art. 7(3)",
+          source: {
+            label: "GDPR/DSGVO Art. 7(3)",
+            url: "https://gdpr-info.eu/art-7-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -404,7 +423,10 @@
             de: "„Privacy by Default“: sichere Standard-Einstellungen.",
             en: "“Privacy by Default”: safe default settings.",
           },
-          source: "GDPR/DSGVO Art. 25",
+          source: {
+            label: "GDPR/DSGVO Art. 25",
+            url: "https://gdpr-info.eu/art-25-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -427,7 +449,10 @@
             de: "Es gibt Ausnahmen (z. B. gesetzliche Aufbewahrungspflichten).",
             en: "There are exceptions (e.g., legal retention obligations).",
           },
-          source: "GDPR/DSGVO Art. 17",
+          source: {
+            label: "GDPR/DSGVO Art. 17",
+            url: "https://gdpr-info.eu/art-17-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -450,7 +475,10 @@
             de: "Fair: Opt-out sollte ähnlich leicht sein wie Opt-in.",
             en: "Fair: opting out should be as easy as opting in.",
           },
-          source: "UX ethics / dark patterns (general)",
+          source: {
+            label: "UX ethics / dark patterns (general)",
+            url: "https://www.edpb.europa.eu/system/files/2022-03/edpb_03-2022_guidelines_on_dark_patterns_in_social_media_platform_interfaces_en.pdf"
+          },
           image: "",
           explanationImage: "",
         },
@@ -473,7 +501,10 @@
             de: "Wenn der Zweck sich ändert, braucht es oft neue Info/Einwilligung.",
             en: "If purpose changes, you often need new notice/consent.",
           },
-          source: "GDPR/DSGVO Art. 5(1)(b)",
+          source: {
+            label: "GDPR/DSGVO Art. 5(1)(b)",
+            url: "https://gdpr-info.eu/art-5-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -491,7 +522,10 @@
             de: "Absichtlich verwirrte Texte = Red Flag.",
             en: "Intentionally confusing texts are a red flag.",
           },
-          source: "GDPR/DSGVO Art. 12",
+          source: {
+            label: "GDPR/DSGVO Art. 12",
+            url: "https://gdpr-info.eu/art-12-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -514,7 +548,10 @@
             de: "Hilft gegen Lock-in: Anbieterwechsel wird leichter.",
             en: "Reduces lock-in: switching providers becomes easier.",
           },
-          source: "GDPR/DSGVO Art. 20",
+          source: {
+            label: "GDPR/DSGVO Art. 20",
+            url: "https://gdpr-info.eu/art-20-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -537,7 +574,10 @@
             de: "Wenn du Passwort wiederverwendest: überall ändern.",
             en: "If you reused the password: change it everywhere.",
           },
-          source: "Security best practice (anti-phishing)",
+          source: {
+            label: "Security best practice (anti-phishing)",
+            url: "https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/Passwortdiebstahl-durch-Phishing/Wie-erkenne-ich-Phishing-in-E-Mails-und-auf-Webseiten/wie-erkenne-ich-phishing-in-e-mails-und-auf-webseiten_node.html"
+          },
           image: "",
           explanationImage: "",
         },
@@ -560,7 +600,10 @@
             de: "Das umfasst technische UND organisatorische Maßnahmen.",
             en: "This includes technical AND organizational measures.",
           },
-          source: "GDPR/DSGVO Art. 5(1)(f), Art. 32",
+          source: {
+            label: "GDPR/DSGVO Art. 5(1)(f), Art. 32",
+            url: "https://gdpr-info.eu/art-5-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -578,7 +621,10 @@
             de: "Privatsphäre ist auch Kontext: Freunde ≠ Öffentlichkeit.",
             en: "Privacy is contextual: friends ≠ the whole internet.",
           },
-          source: "Privacy fundamentals (contextual privacy)",
+          source: {
+            label: "Privacy fundamentals (contextual privacy)",
+            url: "https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en"
+          },
           image: "",
           explanationImage: "",
         },
@@ -601,7 +647,10 @@
             de: "Gute digitale Kultur: erst fragen, dann posten.",
             en: "Good digital culture: ask before posting.",
           },
-          source: "Digital etiquette / consent basics",
+          source: {
+            label: "Digital etiquette / consent basics",
+            url: "https://rm.coe.int/16809382f9"
+          },
           image: "",
           explanationImage: "",
         },
@@ -624,7 +673,10 @@
             de: "Mosaik-Effekt: kleine Infos zusammen werden gefährlich.",
             en: "Mosaic effect: small bits combined become risky.",
           },
-          source: "Privacy/security awareness (general)",
+          source: {
+            label: "Privacy/security awareness (general)",
+            url: "https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en"
+          },
           image: "",
           explanationImage: "",
         },
@@ -642,7 +694,10 @@
             de: "Nutze ungefähren Standort oder teile nur mit vertrauten Personen.",
             en: "Use approximate location or share only with trusted people.",
           },
-          source: "Privacy awareness (location risks)",
+          source: {
+            label: "Privacy awareness (location risks)",
+            url: "https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en"
+          },
           image: "",
           explanationImage: "",
         },
@@ -665,7 +720,10 @@
             de: "„Privacy by Default“ ist ein Grundprinzip guter Produkte.",
             en: "“Privacy by Default” is a core principle of good products.",
           },
-          source: "GDPR/DSGVO Art. 25",
+          source: {
+            label: "GDPR/DSGVO Art. 25",
+            url: "https://gdpr-info.eu/art-25-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -688,7 +746,10 @@
             de: "Wenn du den Zweck nicht verstehst: lieber lassen.",
             en: "If you don’t understand the purpose: better skip it.",
           },
-          source: "Consumer privacy best practice (general)",
+          source: {
+            label: "Consumer privacy best practice (general)",
+            url: "https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en"
+          },
           image: "",
           explanationImage: "",
         },
@@ -711,7 +772,10 @@
             de: "Fair: Ablehnen sollte genauso leicht sein wie Akzeptieren.",
             en: "Fair: rejecting should be as easy as accepting.",
           },
-          source: "Consent UX / dark patterns (general)",
+          source: {
+            label: "Consent UX / dark patterns (general)",
+            url: "https://www.edpb.europa.eu/system/files/2022-03/edpb_03-2022_guidelines_on_dark_patterns_in_social_media_platform_interfaces_en.pdf"
+          },
           image: "",
           explanationImage: "",
         },
@@ -729,7 +793,10 @@
             de: "Nach Leaks: Vorsicht bei „Support“-Anrufen/Mails (Social Engineering).",
             en: "After breaches: beware of fake “support” calls/emails (social engineering).",
           },
-          source: "Security awareness (post-breach threats)",
+          source: {
+            label: "Security awareness (post-breach threats)",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -752,7 +819,10 @@
             de: "Sensible Daten brauchen meist strengere Bedingungen zur Verarbeitung.",
             en: "Sensitive data typically requires stricter processing conditions.",
           },
-          source: "GDPR/DSGVO Art. 9",
+          source: {
+            label: "GDPR/DSGVO Art. 9",
+            url: "https://gdpr-info.eu/art-9-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -775,7 +845,10 @@
             de: "Wenn du den Zweck nicht verstehst: nachfragen oder Alternative wählen.",
             en: "If you don’t understand why: ask or choose an alternative.",
           },
-          source: "GDPR/DSGVO Art. 9",
+          source: {
+            label: "GDPR/DSGVO Art. 9",
+            url: "https://gdpr-info.eu/art-9-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -793,7 +866,10 @@
             de: "Das ist wichtig z. B. bei Scoring/Profilen.",
             en: "Important for scoring/profiles, too.",
           },
-          source: "GDPR/DSGVO Art. 16",
+          source: {
+            label: "GDPR/DSGVO Art. 16",
+            url: "https://gdpr-info.eu/art-16-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -816,7 +892,10 @@
             de: "Profiling ist oft Basis für personalisierte Werbung — oder Risiko bei unfairen Entscheidungen.",
             en: "Profiling powers personalization — and can risk unfair decisions.",
           },
-          source: "GDPR/DSGVO Art. 4 (Profiling), principles",
+          source: {
+            label: "GDPR/DSGVO Art. 4 (Profiling), principles",
+            url: "https://gdpr-info.eu/art-4-gdpr/"
+          },
           image: "",
           explanationImage: "",
         },
@@ -839,7 +918,10 @@
             de: "Viele OS bieten granulare Rechte: nutzen!",
             en: "Modern OS permissions are granular — use them.",
           },
-          source: "Privacy best practice (permissions)",
+          source: {
+            label: "Privacy best practice (permissions)",
+            url: "https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en"
+          },
           image: "",
           explanationImage: "",
         },
@@ -885,7 +967,10 @@
             de: "Phishing gibt’s auch per SMS (Smishing) und Telefon (Vishing).",
             en: "Phishing also happens via SMS (smishing) and calls (vishing).",
           },
-          source: "BSI / ENISA (phishing guidance)",
+          source: {
+            label: "BSI / ENISA (phishing guidance)",
+            url: "https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/Passwortdiebstahl-durch-Phishing/Wie-erkenne-ich-Phishing-in-E-Mails-und-auf-Webseiten/wie-erkenne-ich-phishing-in-e-mails-und-auf-webseiten_node.html"
+          },
           image: "",
           explanationImage: "",
         },
@@ -907,7 +992,10 @@
             de: "Sicher: App öffnen oder URL selbst tippen — nie über Mail-Button.",
             en: "Safer: open the app or type the URL — never via email button.",
           },
-          source: "BSI (phishing checklist)",
+          source: {
+            label: "BSI (phishing checklist)",
+            url: "https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/Passwortdiebstahl-durch-Phishing/Wie-erkenne-ich-Phishing-in-E-Mails-und-auf-Webseiten/wie-erkenne-ich-phishing-in-e-mails-und-auf-webseiten_node.html"
+          },
           explanationImage: "../assets/images/paypal-phishing2.png",
         },
 
@@ -934,7 +1022,10 @@
             de: "HTTPS/Schloss ≠ echte Seite. Auch Phishing kann HTTPS haben.",
             en: "HTTPS/padlock ≠ legitimate site. Phishing can also use HTTPS.",
           },
-          source: "OWASP / security awareness (general)",
+          source: {
+            label: "OWASP / security awareness (general)",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           explanationImage: "",
         },
 
@@ -956,7 +1047,10 @@
             de: "Passwort-Manager = 1 starkes Master-Passwort + einzigartige Passwörter überall.",
             en: "Password manager = one strong master password + unique passwords everywhere.",
           },
-          source: "NIST SP 800-63B (password guidance), general security",
+          source: {
+            label: "NIST SP 800-63B (password guidance), general security",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -974,7 +1068,10 @@
             de: "Authenticator-Apps sind oft sicherer als SMS.",
             en: "Authenticator apps are often safer than SMS.",
           },
-          source: "ENISA / BSI (2FA advice)",
+          source: {
+            label: "ENISA / BSI (2FA advice)",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -997,7 +1094,10 @@
             de: "Typisch: Paket-Benachrichtigung oder „Konto gesperrt“.",
             en: "Typical: parcel alerts or “account locked”.",
           },
-          source: "ENISA (threat awareness)",
+          source: {
+            label: "ENISA (threat awareness)",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1015,7 +1115,10 @@
             de: "Achte auf die Domain: paypaI.com (i) vs paypal.com (l) ist ein Klassiker.",
             en: "Watch the domain: paypaI.com (i) vs paypal.com (l) is classic.",
           },
-          source: "Security awareness (HTTPS misconception)",
+          source: {
+            label: "Security awareness (HTTPS misconception)",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1038,7 +1141,10 @@
             de: "Noch besser: Passwort-Manager + zufällige Passwörter.",
             en: "Even better: password manager + random passwords.",
           },
-          source: "NIST SP 800-63B",
+          source: {
+            label: "Council of Europe – Digital literacy & online safety",
+            url: "https://rm.coe.int/16809382f9"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1061,7 +1167,10 @@
             de: "Auto-Connect deaktivieren, sonst verbindet sich dein Handy später wieder automatisch.",
             en: "Disable auto-connect so your phone won’t rejoin automatically.",
           },
-          source: "BSI (public Wi-Fi advice), general security",
+          source: {
+            label: "BSI (public Wi-Fi advice), general security",
+            url: "https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Informationen-und-Empfehlungen/Cyber-Sicherheitsempfehlungen/Router-WLAN-VPN/Sicherheitstipps-fuer-privates-und-oeffentliches-WLAN/sicherheitstipps-fuer-privates-und-oeffentliches-wlan_node.html"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1084,7 +1193,10 @@
             de: "Druck + Geheimhaltung + schnelle Zahlung = starke Red Flags.",
             en: "Urgency + secrecy + fast payment = major red flags.",
           },
-          source: "BSI (social engineering), BEC awareness (general)",
+          source: {
+            label: "BSI (social engineering), BEC awareness (general)",
+            url: "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Gefaehrdungen/Social-Engineering/social-engineering_node.html"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1107,7 +1219,10 @@
             de: "„Können Sie kurz…?“ + Zeitdruck ist ein typisches Muster.",
             en: "“Can you quickly…?” + urgency is a common pattern.",
           },
-          source: "BSI (social engineering) / general security",
+          source: {
+            label: "BSI (social engineering) / general security",
+            url: "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Gefaehrdungen/Social-Engineering/social-engineering_node.html"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1125,7 +1240,10 @@
             de: "Automatische Updates sparen Zeit und erhöhen Sicherheit.",
             en: "Automatic updates save time and improve security.",
           },
-          source: "General security hygiene (patching)",
+          source: {
+            label: "General security hygiene (patching)",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1148,7 +1266,10 @@
             de: "Hover über Link zeigt oft die echte Zieladresse (Desktop).",
             en: "Hovering a link often reveals the real destination (desktop).",
           },
-          source: "Anti-phishing best practice",
+          source: {
+            label: "Anti-phishing best practice",
+            url: "https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/Passwortdiebstahl-durch-Phishing/Wie-erkenne-ich-Phishing-in-E-Mails-und-auf-Webseiten/wie-erkenne-ich-phishing-in-e-mails-und-auf-webseiten_node.html"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1171,7 +1292,10 @@
             de: "Codes sind wie Schlüssel: niemals weitergeben.",
             en: "Codes are like keys: never share them.",
           },
-          source: "Account security best practice",
+          source: {
+            label: "Account security best practice",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1189,7 +1313,10 @@
             de: "Aktiviere 2FA auch für den Passwort-Manager selbst.",
             en: "Enable 2FA for the password manager itself.",
           },
-          source: "NIST guidance (general), security best practice",
+          source: {
+            label: "NIST guidance (general), security best practice",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1212,7 +1339,10 @@
             de: "Auch echte Firmen setzen selten „24h sonst…“. Das ist verdächtig.",
             en: "Legit companies rarely do “24h or else…”. That’s suspicious.",
           },
-          source: "BSI (phishing indicators)",
+          source: {
+            label: "BSI (phishing indicators)",
+            url: "https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/Passwortdiebstahl-durch-Phishing/Wie-erkenne-ich-Phishing-in-E-Mails-und-auf-Webseiten/wie-erkenne-ich-phishing-in-e-mails-und-auf-webseiten_node.html"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1235,7 +1365,10 @@
             de: "„…1, …2“ ist für Angreifer leicht zu erraten.",
             en: "“…1, …2” patterns are easy for attackers to guess.",
           },
-          source: "NIST SP 800-63B (password guidance)",
+          source: {
+            label: "NIST SP 800-63B (password guidance)",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1253,7 +1386,10 @@
             de: "3-2-1 Regel: 3 Kopien, 2 Medien, 1 offline/offsite.",
             en: "3-2-1 rule: 3 copies, 2 media types, 1 offline/offsite.",
           },
-          source: "General backup best practice",
+          source: {
+            label: "Council of Europe – Digital literacy & cyber hygiene",
+            url: "https://rm.coe.int/16809382f9"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1276,7 +1412,10 @@
             de: "Biometrie ist bequem, aber ein starker Passcode bleibt wichtig.",
             en: "Biometrics are convenient, but a strong passcode still matters.",
           },
-          source: "General device security",
+          source: {
+            label: "General device security",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1299,7 +1438,10 @@
             de: "Achte auch auf Berechtigungen und Entwicklerinfos im Store.",
             en: "Also check permissions and developer details in the store.",
           },
-          source: "General app security hygiene",
+          source: {
+            label: "General app security hygiene",
+            url: "https://www.enisa.europa.eu/topics/cyber-hygiene"
+          },
           image: "",
           explanationImage: "",
         },
@@ -1362,7 +1504,10 @@
                 de: "Wichtige Punkte: Tests, Dokumentation, menschliche Aufsicht.",
                 en: "Key points: testing, documentation, human oversight.",
               },
-              source: "OECD AI Principles (general), EU AI governance concepts",
+              source: {
+                label: "OECD AI Principles (general), EU AI governance concepts",
+                url: "https://www.oecd.org/en/topics/sub-issues/ai-principles.html"
+              },
               image: "",
               explanationImage: "",
             },
@@ -1389,7 +1534,10 @@
                 de: "Reverse Image Search + Fact-Checks helfen schnell.",
                 en: "Reverse image search + fact-checks can help quickly.",
               },
-              source: "Media literacy / deepfake basics (general)",
+              source: {
+                label: "Council of Europe – Digital citizenship & media literacy",
+                url: "https://rm.coe.int/16809382f9"
+              },
               image: "",
               explanationImage: "",
             },
@@ -1407,7 +1555,10 @@
                 de: "Guter Trick: nach Quellen fragen und diese wirklich checken.",
                 en: "Good trick: ask for sources and actually check them.",
               },
-              source: "AI reliability basics (general)",
+              source: {
+                label: "AI reliability basics (general)",
+                url: "https://www.oecd.org/en/topics/sub-issues/ai-principles.html"
+              },
               image: "",
               explanationImage: "",
             },
@@ -1430,7 +1581,10 @@
                 de: "Bias heißt nicht „böse Absicht“ — oft ist es ein Daten-/Designproblem.",
                 en: "Bias isn’t always malicious — often it’s a data/design issue.",
               },
-              source: "OECD AI Principles (fairness), general AI ethics",
+              source: {
+                label: "OECD AI Principles (fairness), general AI ethics",
+                url: "https://www.oecd.org/en/topics/sub-issues/ai-principles.html"
+              },
               image: "",
               explanationImage: "",
             },
@@ -1453,7 +1607,10 @@
                 de: "Wichtig: Audit, Transparenz, menschliche Kontrolle und Beschwerdemöglichkeiten.",
                 en: "Key: audits, transparency, human oversight, and appeal mechanisms.",
               },
-              source: "AI ethics (fairness/oversight), governance concepts",
+              source: {
+                label: "AI ethics (fairness/oversight), governance concepts",
+                url: "https://www.oecd.org/en/topics/sub-issues/ai-principles.html"
+              },
               image: "",
               explanationImage: "",
             },
@@ -1471,7 +1628,10 @@
                 de: "Frage dich: Wer profitiert? Was ist das Ziel der Empfehlung?",
                 en: "Ask: who benefits? what is the objective of the recommendation?",
               },
-              source: "Media/AI literacy (general)",
+              source: {
+                label: "Council of Europe – Digital citizenship & media literacy",
+                url: "https://rm.coe.int/16809382f9"
+              },
               image: "",
               explanationImage: "",
             },
@@ -1494,7 +1654,10 @@
                 de: "Transparenz hilft, Vertrauen richtig zu dosieren.",
                 en: "Transparency helps calibrate trust.",
               },
-              source: "OECD AI Principles (transparency), AI literacy (general)",
+              source: {
+                label: "OECD AI Principles (transparency), AI literacy (general)",
+                url: "https://www.oecd.org/en/topics/sub-issues/ai-principles.html"
+              },
               image: "",
               explanationImage: "",
             },
@@ -1560,7 +1723,10 @@
               de: "Ein Impressum/Kontakt allein reicht nicht — aber fehlende Infos sind eine Red Flag.",
               en: "An imprint/contact alone isn’t enough — but missing info is a red flag.",
             },
-            source: "Medienkompetenz-Grundlagen (Transparenz/Quellencheck)",
+            source: {
+              label: "Medienkompetenz-Grundlagen (Transparenz/Quellencheck)",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1587,7 +1753,10 @@
               de: "Schnellcheck: Suchbegriff + offizielle Website + 1–2 seriöse Medien. Keine Quelle = keine Sicherheit.",
               en: "Quick check: search term + official website + 1–2 reputable outlets. No source = no certainty.",
             },
-            source: "Medienkompetenz: Quellencheck / Verifikation",
+            source: {
+              label: "Medienkompetenz: Quellencheck / Verifikation",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1613,7 +1782,10 @@
               de: "Achte auf: Autor, Datum, Studie/Beleg, Gegenchecks, Kontext.",
               en: "Check: author, date, study/evidence, cross-checks, context.",
             },
-            source: "Medienkompetenz: Plausibilität & Evidenz",
+            source: {
+              label: "Medienkompetenz: Plausibilität & Evidenz",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1639,7 +1811,10 @@
               de: "Viele virale Clips sind „aus dem Zusammenhang gerissen“ (out of context).",
               en: "Many viral clips are “out of context.”",
             },
-            source: "Medienkompetenz: Kontextprüfung",
+            source: {
+              label: "Medienkompetenz: Kontextprüfung",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1660,7 +1835,10 @@
               de: "Algorithmen belohnen oft Engagement — auch bei kontroversen oder falschen Inhalten.",
               en: "Algorithms often reward engagement — even for misleading content.",
             },
-            source: "Medienkompetenz / Algorithmus-Grundlagen",
+            source: {
+              label: "Medienkompetenz / Algorithmus-Grundlagen",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1686,7 +1864,10 @@
               de: "Achte auf Formulierungen wie „Du wirst nicht glauben…“ oder „Das sagt dir niemand…“.",
               en: "Watch for phrases like “You won’t believe…” or “They don’t want you to know…”",
             },
-            source: "Medienkompetenz: Manipulationsmuster",
+            source: {
+              label: "Medienkompetenz: Manipulationsmuster",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1712,7 +1893,10 @@
               de: "Viele Posts zitieren Studien falsch oder lassen Einschränkungen weg.",
               en: "Many posts misquote studies or omit limitations.",
             },
-            source: "Medienkompetenz: Quellen/Primärquelle",
+            source: {
+              label: "Medienkompetenz: Quellen/Primärquelle",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1738,7 +1922,10 @@
               de: "Sekundärquellen können gut sein — aber prüfe: verlinken sie sauber?",
               en: "Secondary sources can be good — but check if they link properly.",
             },
-            source: "Wissenschafts-/Medienkompetenz Grundlagen",
+            source: {
+              label: "Wissenschafts-/Medienkompetenz Grundlagen",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1759,7 +1946,10 @@
               de: "Wenn möglich: Link, Archiv-Version oder offizielles Statement suchen.",
               en: "If possible: find a link, an archived version, or an official statement.",
             },
-            source: "Medienkompetenz: Verifikation",
+            source: {
+              label: "Medienkompetenz: Verifikation",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1785,7 +1975,10 @@
               de: "Guter Trick: Suche aktiv nach Gegenargumenten aus seriösen Quellen.",
               en: "Good trick: actively look for reputable counter-evidence.",
             },
-            source: "Kognitive Verzerrungen (Allgemeinwissen)",
+            source: {
+              label: "Council of Europe – Digital citizenship & media literacy",
+              url: "https://rm.coe.int/16809382f9"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1811,7 +2004,10 @@
               de: "Manipulative Inhalte arbeiten oft mit Angst/Wut, weil das Engagement steigert.",
               en: "Manipulative content often uses anger/fear because it boosts engagement.",
             },
-            source: "Medienkompetenz: Emotion & Manipulation",
+            source: {
+              label: "Medienkompetenz: Emotion & Manipulation",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1834,7 +2030,10 @@
               de: "Auch Rabattcodes/„Link in Bio“ sind typische Werbesignale.",
               en: "Discount codes or “link in bio” are common ad signals.",
             },
-            source: "Werbekennzeichnung / Medienkompetenz (allgemein)",
+            source: {
+              label: "Werbekennzeichnung / Medienkompetenz (allgemein)",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1852,7 +2051,10 @@
               de: "Auch verifizierte Accounts können Fehler teilen oder gehackt werden.",
               en: "Verified accounts can still share errors or get hacked.",
             },
-            source: "Social media literacy (general)",
+            source: {
+              label: "Council of Europe – Digital citizenship & media literacy",
+              url: "https://rm.coe.int/16809382f9"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1875,7 +2077,10 @@
               de: "Je stärker der Post „bettelt“, desto skeptischer solltest du sein.",
               en: "The more a post begs for engagement, the more skeptical you should be.",
             },
-            source: "Social media literacy (general)",
+            source: {
+              label: "Council of Europe – Digital citizenship & media literacy",
+              url: "https://rm.coe.int/16809382f9"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1898,7 +2103,10 @@
               de: "„Out of context“ ist eine der häufigsten Formen von Desinformation.",
               en: "“Out of context” is one of the most common forms of misinformation.",
             },
-            source: "Medienkompetenz: Kontext/Originalquelle",
+            source: {
+              label: "Medienkompetenz: Kontext/Originalquelle",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1921,7 +2129,10 @@
               de: "„Misinformation“ = falsche Info ohne Absicht. „Desinformation“ = mit Absicht.",
               en: "Misinformation = false without intent. Disinformation = intentional.",
             },
-            source: "Medienkompetenz: Desinformation/Misinformation",
+            source: {
+              label: "Medienkompetenz: Desinformation/Misinformation",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1939,7 +2150,10 @@
               de: "Wenn’s zu absurd klingt: Quelle checken, ob Satire/Parodie.",
               en: "If it sounds absurd: check if the source is satire/ parody.",
             },
-            source: "Medienkompetenz: Satire erkennen",
+            source: {
+              label: "Medienkompetenz: Satire erkennen",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1965,7 +2179,10 @@
               de: "Manchmal stammt das Bild aus einem völlig anderen Ereignis/Jahr.",
               en: "Sometimes the image is from a totally different event/year.",
             },
-            source: "Medienkompetenz: Verifikation/Reverse Search",
+            source: {
+              label: "Medienkompetenz: Verifikation/Reverse Search",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -1988,7 +2205,10 @@
               de: "Achte darauf, ob Medien nur voneinander abschreiben (gleiche Quelle) oder wirklich unabhängig sind.",
               en: "Check whether outlets copy the same source or are truly independent.",
             },
-            source: "Medienkompetenz: Cross-checking",
+            source: {
+              label: "Medienkompetenz: Cross-checking",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -2006,7 +2226,10 @@
               de: "Dein Feed ist personalisiert. Zwei Personen sehen völlig unterschiedliche Realitäten.",
               en: "Your feed is personalized. Two people can see totally different realities.",
             },
-            source: "Algorithmus-/Medienkompetenz Grundlagen",
+            source: {
+              label: "Algorithmus-/Medienkompetenz Grundlagen",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -2029,7 +2252,10 @@
               de: "Aktiv gegensteuern: unterschiedliche Quellen abonnieren, bewusst suchen.",
               en: "Counter it: follow diverse sources, search intentionally.",
             },
-            source: "Digital literacy (personalization effects)",
+            source: {
+              label: "Digital literacy (personalization effects)",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -2052,7 +2278,10 @@
               de: "Wenn du’s nicht bestätigen kannst: lieber nicht teilen.",
               en: "If you can’t verify it: don’t share it.",
             },
-            source: "Medienkompetenz: Schnellcheck",
+            source: {
+              label: "Medienkompetenz: Schnellcheck",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -2075,7 +2304,10 @@
               de: "Achte: passt das Bild wirklich zum Ereignis? Datum? Ort?",
               en: "Check: does the image truly match the event? date? place?",
             },
-            source: "Medienkompetenz: Framing/Visual literacy",
+            source: {
+              label: "Medienkompetenz: Framing/Visual literacy",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -2093,7 +2325,10 @@
               de: "Viele Posts mischen beides: erst Gefühl, dann „Fakt“ behauptet.",
               en: "Many posts mix both: emotion first, then a “fact” claim.",
             },
-            source: "Medienkompetenz Grundlagen",
+            source: {
+              label: "Medienkompetenz Grundlagen",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -2116,7 +2351,10 @@
               de: "Framing ist nicht immer „böse“, aber du solltest es erkennen können.",
               en: "Framing isn’t always malicious — but it’s important to recognize.",
             },
-            source: "Medienkompetenz: Sprache/Framing (allgemein)",
+            source: {
+              label: "Medienkompetenz: Sprache/Framing (allgemein)",
+              url: "https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf"
+            },
             image: "",
             explanationImage: "",
           },
@@ -2139,7 +2377,10 @@
               de: "Check: Publikationen, Institution, unabhängige Erwähnungen, Kontext.",
               en: "Check: publications, institution, independent mentions, context.",
             },
-            source: "Media literacy (credibility checks)",
+            source: {
+              label: "Council of Europe – Digital citizenship & media literacy",
+              url: "https://rm.coe.int/16809382f9"
+            },
             image: "",
             explanationImage: "",
           },
@@ -2423,7 +2664,6 @@
           ? `
             <button class="info-toggle" id="info-toggle" type="button">
               <img src="assets/icons/information.png" alt="Info" class="quiz-info-icon">
-              assets/icons
               ${escapeHTML(t("didYouKnow"))}
             </button>
 
