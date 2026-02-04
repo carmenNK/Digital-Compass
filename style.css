@@ -454,7 +454,8 @@ button:disabled {
 }
 
 .footer-logos img{
-  height: 42px;
+  height: 40px;
   width: auto;
+  margin: 8px;
   object-fit: contain;
 }
