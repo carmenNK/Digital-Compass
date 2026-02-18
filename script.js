@@ -2688,234 +2688,234 @@
 
   const questionBankKids = {
   1: {
-    title: { de: "Meine Daten", en: "My Data" },
+    title: { de: "Meine Daten", en: "My Data", fr: "Mes données" },
     summary: (ratio) => {
-      if (ratio >= 0.8) return { de: { title: "🛡️ Daten-Checker!", text: "Super! Du passt gut auf deine Daten auf." }, en: { title: "🛡️ Data checker!", text: "Great! You protect your data well." } };
-      if (ratio >= 0.5) return { de: { title: "✨ Guter Anfang!", text: "Nice! Mit ein paar Regeln wirst du noch sicherer." }, en: { title: "✨ Good start!", text: "Nice! A few rules will make you even safer." } };
-      return { de: { title: "🌱 Übung macht’s!", text: "Kein Problem — du lernst gerade, was sicher ist." }, en: { title: "🌱 Practice helps!", text: "No worries — you’re learning what’s safe." } };
+      if (ratio >= 0.8) return { de: { title: "🛡️ Daten-Checker!", text: "Super! Du passt gut auf deine Daten auf." }, en: { title: "🛡️ Data checker!", text: "Great! You protect your data well." }, fr: { title: "🛡️ Vérificateur de données!", text: "Super! Vous protégez bien vos données." } };
+      if (ratio >= 0.5) return { de: { title: "✨ Guter Anfang!", text: "Nice! Mit ein paar Regeln wirst du noch sicherer." }, en: { title: "✨ Good start!", text: "Nice! A few rules will make you even safer." }, fr: { title: "✨ Bon début!", text: "Bien! Quelques règles vous rendront encore plus sûr." } };
+      return { de: { title: "🌱 Übung macht’s!", text: "Kein Problem — du lernst gerade, was sicher ist." }, en: { title: "🌱 Practice helps!", text: "No worries — you’re learning what’s safe." }, fr: { title: "🌱 La pratique aide!", text: "Pas de souci — vous apprenez ce qui est sûr." } };
     },
     questions: [
       {
         id: "k_p1_q01",
         type: "mc",
-        q: { de: "Welche Info solltest du online lieber NICHT öffentlich teilen?", en: "Which info should you usually NOT share publicly online?" },
+        q: { de: "Welche Info solltest du online lieber NICHT öffentlich teilen?", en: "Which info should you usually NOT share publicly online?", fr: "Quelle information devriez-vous généralement NE PAS partager publiquement en ligne ?" },
         choices: [
-          { de: "Deine Adresse", en: "Your home address" },
-          { de: "Dein Lieblingstier", en: "Your favorite animal" },
-          { de: "Dein Lieblingsspiel", en: "Your favorite game" }
+          { de: "Deine Adresse", en: "Your home address", fr: "Votre adresse" },
+          { de: "Dein Lieblingstier", en: "Your favorite animal", fr: "Votre animal préféré" },
+          { de: "Dein Lieblingsspiel", en: "Your favorite game", fr: "Votre jeu préféré" }
         ],
         a: 0,
-        explanation: { de: "Adresse ist privat. Teile sie nur mit Personen, denen du vertraust.", en: "An address is private. Share it only with people you trust." },
-        wusstest: { de: "Wenn du unsicher bist: frag eine erwachsene Person.", en: "If you’re unsure: ask a trusted adult." },
+        explanation: { de: "Adresse ist privat. Teile sie nur mit Personen, denen du vertraust.", en: "An address is private. Share it only with people you trust.", fr: "Une adresse est privée. Ne la partagez qu'avec des personnes de confiance." },
+        wusstest: { de: "Wenn du unsicher bist: frag eine erwachsene Person.", en: "If you’re unsure: ask a trusted adult.", fr: "Si vous n'êtes pas sûr : demandez à un adulte de confiance." },
         source: { label: "klicksafe / BSI – Kindersicherheit (Startseite)", url: "https://www.klicksafe.de/" }
       },
       {
         id: "k_p1_q02",
         type: "truefalse",
-        q: { de: "Ein Spitzname ist oft besser als dein voller Name im Internet.", en: "A nickname is often better than your full name online." },
+        q: { de: "Ein Spitzname ist oft besser als dein voller Name im Internet.", en: "A nickname is often better than your full name online.", fr: "Un pseudonyme est souvent mieux que votre nom complet en ligne." },
         a: true,
-        explanation: { de: "Ein Spitzname schützt deine Identität besser.", en: "A nickname protects your identity better." },
-        wusstest: { de: "Nutze Privatsphäre-Einstellungen in Apps.", en: "Use privacy settings in apps." },
+        explanation: { de: "Ein Spitzname schützt deine Identität besser.", en: "A nickname protects your identity better.", fr: "Un pseudonyme protège mieux votre identité." },
+        wusstest: { de: "Nutze Privatsphäre-Einstellungen in Apps.", en: "Use privacy settings in apps.", fr: "Utilisez les paramètres de confidentialité dans les applications." },
         source: { label: "klicksafe – Privat im Netz", url: "https://www.klicksafe.de/" }
       },
       {
         id: "k_p1_q03",
         type: "scenario",
-        q: { de: "Eine App fragt nach deinem Standort, obwohl sie das nicht braucht. Was machst du?", en: "An app asks for your location even though it doesn’t need it. What do you do?" },
+        q: { de: "Eine App fragt nach deinem Standort, obwohl sie das nicht braucht. Was machst du?", en: "An app asks for your location even though it doesn’t need it. What do you do?", fr: "Une application demande votre localisation alors qu'elle n'en a pas besoin. Que faites-vous ?" },
         choices: [
-          { de: "Erlauben (immer)", en: "Allow (always)" },
-          { de: "Ablehnen oder nur „Beim Benutzen“ erlauben", en: "Deny or allow only “While using”" },
-          { de: "Ignorieren", en: "Ignore it" }
+          { de: "Erlauben (immer)", en: "Allow (always)", fr: "Autoriser (toujours)" },
+          { de: "Ablehnen oder nur „Beim Benutzen“ erlauben", en: "Deny or allow only “While using”", fr: "Refuser ou autoriser uniquement « Lors de l'utilisation »" },
+          { de: "Ignorieren", en: "Ignore it", fr: "Ignorer" }
         ],
         a: 1,
-        explanation: { de: "Nur geben, was nötig ist. Standort kann viel verraten.", en: "Only share what’s needed. Location can reveal a lot." },
-        wusstest: { de: "Du kannst Berechtigungen später ändern.", en: "You can change permissions later." },
+        explanation: { de: "Nur geben, was nötig ist. Standort kann viel verraten.", en: "Only share what’s needed. Location can reveal a lot.", fr: "Ne partagez que ce qui est nécessaire. La localisation peut révéler beaucoup." },
+        wusstest: { de: "Du kannst Berechtigungen später ändern.", en: "You can change permissions later.", fr: "Vous pouvez modifier les autorisations plus tard." },
         source: { label: "Apple – Standortdienste (Überblick)", url: "https://support.apple.com/" }
       },
       {
         id: "k_p1_q04",
         type: "mc",
-        q: { de: "Was bedeutet „Privat“ in einer App?", en: "What does “Private” mean in an app?" },
+        q: { de: "Was bedeutet „Privat“ in einer App?", en: "What does “Private” mean in an app?", fr: "Que signifie « Privé » dans une application ?" },
         choices: [
-          { de: "Nur ausgewählte Personen können es sehen", en: "Only selected people can see it" },
-          { de: "Alle können es sehen", en: "Everyone can see it" },
-          { de: "Niemand kann es sehen (auch du nicht)", en: "Nobody can see it (not even you)" }
+          { de: "Nur ausgewählte Personen können es sehen", en: "Only selected people can see it", fr: "Seules les personnes sélectionnées peuvent le voir" },
+          { de: "Alle können es sehen", en: "Everyone can see it", fr: "Tout le monde peut le voir" },
+          { de: "Niemand kann es sehen (auch du nicht)", en: "Nobody can see it (not even you)", fr: "Personne ne peut le voir (pas même vous)" }
         ],
         a: 0,
-        explanation: { de: "Privat heißt: nicht für alle sichtbar.", en: "Private means: not visible to everyone." },
-        wusstest: { de: "Checke manchmal deine Einstellungen.", en: "Check your settings sometimes." },
+        explanation: { de: "Privat heißt: nicht für alle sichtbar.", en: "Private means: not visible to everyone.", fr: "Privé signifie : non visible par tout le monde." },
+        wusstest: { de: "Checke manchmal deine Einstellungen.", en: "Check your settings sometimes.", fr: "Vérifiez parfois vos paramètres." },
         source: { label: "klicksafe – Einstellungen", url: "https://www.klicksafe.de/" }
       }
     ]
   },
 
   2: {
-    title: { de: "Sicher online", en: "Safe Online" },
+    title: { de: "Sicher online", en: "Safe Online", fr: "En ligne en sécurité" },
     summary: (ratio) => {
-      if (ratio >= 0.8) return { de: { title: "🔐 Sicherheits-Pro!", text: "Sehr gut! Du erkennst gefährliche Situationen." }, en: { title: "🔐 Safety pro!", text: "Great! You spot risky situations." } };
-      if (ratio >= 0.5) return { de: { title: "🚦Gute Regeln!", text: "Nice! Mit Übung wirst du noch sicherer." }, en: { title: "🚦Good rules!", text: "Nice! Practice makes you safer." } };
-      return { de: { title: "🧠 Lernmodus!", text: "Kein Stress — du baust gerade starke Sicherheits-Skills auf." }, en: { title: "🧠 Learning mode!", text: "No stress — you’re building strong safety skills." } };
+      if (ratio >= 0.8) return { de: { title: "🔐 Sicherheits-Pro!", text: "Sehr gut! Du erkennst gefährliche Situationen." }, en: { title: "🔐 Safety pro!", text: "Great! You spot risky situations." }, fr: { title: "🔐 Pro de la sécurité!", text: "Super! Vous repérez les situations à risque." } };
+      if (ratio >= 0.5) return { de: { title: "🚦Gute Regeln!", text: "Nice! Mit Übung wirst du noch sicherer." }, en: { title: "🚦Good rules!", text: "Nice! Practice makes you safer." }, fr: { title: "🚦Bonnes règles!", text: "Bien! Avec de la pratique, vous serez encore plus en sécurité." } };
+      return { de: { title: "🧠 Lernmodus!", text: "Kein Stress — du baust gerade starke Sicherheits-Skills auf." }, en: { title: "🧠 Learning mode!", text: "No stress — you’re building strong safety skills." }, fr: { title: "🧠 Mode apprentissage!", text: "Pas de stress — vous développez de solides compétences en matière de sécurité." } };
     },
     questions: [
       {
         id: "k_s2_q01",
         type: "mc",
-        q: { de: "Was ist ein gutes Passwort?", en: "What is a good password?" },
+        q: { de: "Was ist ein gutes Passwort?", en: "What is a good password?", fr: "Quel est un bon mot de passe ?" },
         choices: [
-          { de: "1234", en: "1234" },
-          { de: "Ein langes Passwort mit mehreren Wörtern", en: "A long password with several words" },
-          { de: "Dein Vorname", en: "Your first name" }
+          { de: "1234", en: "1234", fr: "1234" },
+          { de: "Ein langes Passwort mit mehreren Wörtern", en: "A long password with several words", fr: "Un long mot de passe avec plusieurs mots" },
+          { de: "Dein Vorname", en: "Your first name", fr: "Votre prénom" }
         ],
         a: 1,
-        explanation: { de: "Lange Passwörter sind schwerer zu erraten.", en: "Long passwords are harder to guess." },
-        wusstest: { de: "Nutze nie dasselbe Passwort überall.", en: "Don’t use the same password everywhere." },
+        explanation: { de: "Lange Passwörter sind schwerer zu erraten.", en: "Long passwords are harder to guess.", fr: "Les mots de passe longs sont plus difficiles à deviner." },
+        wusstest: { de: "Nutze nie dasselbe Passwort überall.", en: "Don’t use the same password everywhere.", fr: "N’utilisez jamais le même mot de passe partout." },
         source: { label: "NIST – Passwort-Richtlinien (Überblick)", url: "https://pages.nist.gov/800-63-3/" }
       },
       {
         id: "k_s2_q02",
         type: "scenario",
-        q: { de: "Du bekommst eine Nachricht: „Schick mir ein Foto, sonst…“ Was machst du?", en: "You get a message: “Send me a photo or else…” What do you do?" },
+        q: { de: "Du bekommst eine Nachricht: „Schick mir ein Foto, sonst…“ Was machst du?", en: "You get a message: “Send me a photo or else…” What do you do?", fr: "Vous recevez un message : « Envoie-moi une photo ou sinon… » Que fais-tu ?" },
         choices: [
-          { de: "Sofort schicken", en: "Send it immediately" },
-          { de: "Nicht antworten, blockieren und einer erwachsenen Person sagen", en: "Don’t reply, block, and tell a trusted adult" },
-          { de: "Weiterleiten an Freunde", en: "Forward to friends" }
+          { de: "Sofort schicken", en: "Send it immediately", fr: "Envoyer immédiatement" },
+          { de: "Nicht antworten, blockieren und einer erwachsenen Person sagen", en: "Don’t reply, block, and tell a trusted adult", fr: "Ne pas répondre, bloquer et en parler à un adulte de confiance" },
+          { de: "Weiterleiten an Freunde", en: "Forward to friends", fr: "Transférer à des amis" }
         ],
         a: 1,
-        explanation: { de: "Das ist Druck/Erpressung. Hol dir Hilfe und antworte nicht.", en: "That’s pressure/blackmail. Get help and don’t reply." },
-        wusstest: { de: "Du bist nicht schuld, wenn jemand dich unter Druck setzt.", en: "It’s not your fault if someone pressures you." },
+        explanation: { de: "Das ist Druck/Erpressung. Hol dir Hilfe und antworte nicht.", en: "That’s pressure/blackmail. Get help and don’t reply.", fr: "C’est de la pression/chantage. Obtenez de l’aide et ne répondez pas." },
+        wusstest: { de: "Du bist nicht schuld, wenn jemand dich unter Druck setzt.", en: "It’s not your fault if someone pressures you.", fr: "Ce n’est pas de votre faute si quelqu’un vous met la pression." },
         source: { label: "klicksafe – Hilfe", url: "https://www.klicksafe.de/" }
       },
       {
         id: "k_s2_q03",
         type: "truefalse",
-        q: { de: "Du solltest Links in komischen Nachrichten lieber nicht anklicken.", en: "You should avoid clicking links in suspicious messages." },
+        q: { de: "Du solltest Links in komischen Nachrichten lieber nicht anklicken.", en: "You should avoid clicking links in suspicious messages.", fr: "Vous devriez éviter de cliquer sur des liens dans des messages suspects." },
         a: true,
-        explanation: { de: "Links können auf Fake-Seiten führen.", en: "Links can lead to fake sites." },
-        wusstest: { de: "Wenn du unsicher bist: frag eine erwachsene Person.", en: "If unsure: ask a trusted adult." },
+        explanation: { de: "Links können auf Fake-Seiten führen.", en: "Links can lead to fake sites.", fr: "Les liens peuvent mener à de faux sites." },
+        wusstest: { de: "Wenn du unsicher bist: frag eine erwachsene Person.", en: "If unsure: ask a trusted adult.", fr: "Si vous n’êtes pas sûr : demandez à un adulte de confiance." },
         source: { label: "BSI – Phishing (Startseite)", url: "https://www.bsi.bund.de/" }
       },
       {
         id: "k_s2_q04",
         type: "mc",
-        q: { de: "Was machst du, wenn dich jemand online beleidigt?", en: "What do you do if someone insults you online?" },
+        q: { de: "Was machst du, wenn dich jemand online beleidigt?", en: "What do you do if someone insults you online?", fr: "Que fais-tu si quelqu’un t’insulte en ligne ?" },
         choices: [
-          { de: "Zurück beleidigen", en: "Insult back" },
-          { de: "Screenshot machen, blockieren, melden, Hilfe holen", en: "Take a screenshot, block, report, get help" },
-          { de: "Nichts sagen und alles glauben", en: "Say nothing and believe everything" }
+          { de: "Zurück beleidigen", en: "Insult back", fr: "Répondre par une insulte" },
+          { de: "Screenshot machen, blockieren, melden, Hilfe holen", en: "Take a screenshot, block, report, get help", fr: "Prendre une capture d’écran, bloquer, signaler, demander de l’aide" },
+          { de: "Nichts sagen und alles glauben", en: "Say nothing and believe everything", fr: "Ne rien dire et tout croire" }
         ],
         a: 1,
-        explanation: { de: "Melden + blockieren + Hilfe holen ist am sichersten.", en: "Report + block + get help is safest." },
-        wusstest: { de: "Du musst das nicht alleine lösen.", en: "You don’t have to handle it alone." },
+        explanation: { de: "Melden + blockieren + Hilfe holen ist am sichersten.", en: "Report + block + get help is safest.", fr: "Signaler + bloquer + demander de l’aide est le plus sûr." },
+        wusstest: { de: "Du musst das nicht alleine lösen.", en: "You don’t have to handle it alone.", fr: "Vous n’êtes pas obligé de le gérer seul." },
         source: { label: "klicksafe – Cybermobbing", url: "https://www.klicksafe.de/" }
       }
     ]
   },
 
   3: {
-    title: { de: "KI & Tricks", en: "AI & Tricks" },
+    title: { de: "KI & Tricks", en: "AI & Tricks", fr: "IA & Astuces" },
     summary: (ratio) => {
-      if (ratio >= 0.8) return { de: { title: "🤖 KI-Detektiv!", text: "Top! Du weißt: KI ist nicht immer perfekt." }, en: { title: "🤖 AI detective!", text: "Great! You know AI isn’t always perfect." } };
-      if (ratio >= 0.5) return { de: { title: "🧭 Gute Orientierung!", text: "Nice! Du bleibst neugierig und vorsichtig." }, en: { title: "🧭 Good sense!", text: "Nice! You’re curious and careful." } };
-      return { de: { title: "🌟 Weiter lernen!", text: "KI ist spannend — und du lernst, wie man sie richtig nutzt." }, en: { title: "🌟 Keep learning!", text: "AI is exciting — and you’re learning how to use it wisely." } };
+      if (ratio >= 0.8) return { de: { title: "🤖 KI-Detektiv!", text: "Top! Du weißt: KI ist nicht immer perfekt." }, en: { title: "🤖 AI detective!", text: "Great! You know AI isn’t always perfect." }, fr: { title: "🤖 Détective IA!", text: "Super! Vous savez que l’IA n’est pas toujours parfaite." } };
+      if (ratio >= 0.5) return { de: { title: "🧭 Gute Orientierung!", text: "Nice! Du bleibst neugierig und vorsichtig." }, en: { title: "🧭 Good sense!", text: "Nice! You’re curious and careful." }, fr: { title: "🧭 Bon sens!", text: "Bien! Vous restez curieux et prudent." } };
+      return { de: { title: "🌟 Weiter lernen!", text: "KI ist spannend — und du lernst, wie man sie richtig nutzt." }, en: { title: "🌟 Keep learning!", text: "AI is exciting — and you’re learning how to use it wisely." }, fr: { title: "🌟 Continuez à apprendre!", text: "L’IA est passionnante — et vous apprenez à l’utiliser judicieusement." } };
     },
     questions: [
       {
         id: "k_ai_q01",
         type: "truefalse",
-        q: { de: "KI kann manchmal Dinge erfinden, die nicht stimmen.", en: "AI can sometimes make up things that are not true." },
+        q: { de: "KI kann manchmal Dinge erfinden, die nicht stimmen.", en: "AI can sometimes make up things that are not true.", fr: "L'IA peut parfois inventer des choses qui ne sont pas vraies." },
         a: true,
-        explanation: { de: "Darum: immer prüfen!", en: "So: always verify!" },
-        wusstest: { de: "Frag nach Quellen oder Beispielen.", en: "Ask for sources or examples." },
+        explanation: { de: "Darum: immer prüfen!", en: "So: always verify!", fr: "Donc : toujours vérifier !" },
+        wusstest: { de: "Frag nach Quellen oder Beispielen.", en: "Ask for sources or examples.", fr: "Demandez des sources ou des exemples." },
         source: { label: "OECD – AI (Startseite)", url: "https://oecd.ai/" }
       },
       {
         id: "k_ai_q02",
         type: "mc",
-        q: { de: "Was ist ein Deepfake?", en: "What is a deepfake?" },
+        q: { de: "Was ist ein Deepfake?", en: "What is a deepfake?", fr: "Qu'est-ce qu'un deepfake ?" },
         choices: [
-          { de: "Ein echtes Foto", en: "A real photo" },
-          { de: "Ein Video/Bild, das mit KI verändert wurde", en: "A video/image changed with AI" },
-          { de: "Ein Passwort", en: "A password" }
+          { de: "Ein echtes Foto", en: "A real photo", fr: "Une vraie photo" },
+          { de: "Ein Video/Bild, das mit KI verändert wurde", en: "A video/image changed with AI", fr: "Une vidéo/image modifiée par l'IA" },
+          { de: "Ein Passwort", en: "A password", fr: "Un mot de passe" }
         ],
         a: 1,
-        explanation: { de: "Deepfakes können sehr echt aussehen, sind aber manipuliert.", en: "Deepfakes can look real but are manipulated." },
-        wusstest: { de: "Wenn etwas krass klingt: erst prüfen.", en: "If it sounds extreme: verify first." },
+        explanation: { de: "Deepfakes können sehr echt aussehen, sind aber manipuliert.", en: "Deepfakes can look real but are manipulated.", fr: "Les deepfakes peuvent sembler réels mais sont manipulés." },
+        wusstest: { de: "Wenn etwas krass klingt: erst prüfen.", en: "If it sounds extreme: verify first.", fr: "Si quelque chose semble extrême : vérifiez d'abord." },
         source: { label: "ENISA – Cybersecurity (Startseite)", url: "https://www.enisa.europa.eu/" }
       },
       {
         id: "k_ai_q03",
         type: "scenario",
-        q: { de: "Du siehst ein verrücktes Video ohne Quelle. Was machst du?", en: "You see a crazy video with no source. What do you do?" },
+        q: { de: "Du siehst ein verrücktes Video ohne Quelle. Was machst du?", en: "You see a crazy video with no source. What do you do?", fr: "Vous voyez une vidéo folle sans source. Que faites-vous ?" },
         choices: [
-          { de: "Sofort teilen", en: "Share immediately" },
-          { de: "Quelle suchen / Erwachsenen fragen / nicht sofort teilen", en: "Look for a source / ask an adult / don’t share yet" },
-          { de: "Kommentare glauben", en: "Believe the comments" }
+          { de: "Sofort teilen", en: "Share immediately", fr: "Partager immédiatement" },
+          { de: "Quelle suchen / Erwachsenen fragen / nicht sofort teilen", en: "Look for a source / ask an adult / don’t share yet", fr: "Chercher une source / demander à un adulte / ne pas partager tout de suite" },
+          { de: "Kommentare glauben", en: "Believe the comments", fr: "Croire les commentaires" }
         ],
         a: 1,
-        explanation: { de: "Ohne Quelle ist es unsicher. Erst checken, dann teilen.", en: "Without a source it’s uncertain. Check first, then share." },
-        wusstest: { de: "Screenshots und Clips können aus dem Kontext sein.", en: "Screenshots/clips can be out of context." },
+        explanation: { de: "Ohne Quelle ist es unsicher. Erst checken, dann teilen.", en: "Without a source it’s uncertain. Check first, then share.", fr: "Sans source, c'est incertain. Vérifiez d'abord, puis partagez." },
+        wusstest: { de: "Screenshots und Clips können aus dem Kontext sein.", en: "Screenshots/clips can be out of context.", fr: "Les captures d'écran et les clips peuvent être hors contexte." },
         source: { label: "klicksafe – Fakes erkennen", url: "https://www.klicksafe.de/" }
       },
       {
         id: "k_ai_q04",
         type: "mc",
-        q: { de: "Was ist fair, wenn KI dir bei Hausaufgaben hilft?", en: "What’s fair if AI helps you with homework?" },
+        q: { de: "Was ist fair, wenn KI dir bei Hausaufgaben hilft?", en: "What’s fair if AI helps you with homework?", fr: "Qu'est-ce qui est juste si l'IA vous aide avec vos devoirs ?" },
         choices: [
-          { de: "Alles kopieren und behaupten, es ist von mir", en: "Copy everything and claim it’s mine" },
-          { de: "KI als Hilfe nutzen, aber selbst verstehen und eigene Worte verwenden", en: "Use AI as help, but understand and use your own words" },
-          { de: "Gar nichts mehr lernen", en: "Stop learning" }
+          { de: "Alles kopieren und behaupten, es ist von mir", en: "Copy everything and claim it’s mine", fr: "Tout copier et prétendre que c'est à moi" },
+          { de: "KI als Hilfe nutzen, aber selbst verstehen und eigene Worte verwenden", en: "Use AI as help, but understand and use your own words", fr: "Utiliser l'IA comme aide, mais comprendre et utiliser ses propres mots" },
+          { de: "Gar nichts mehr lernen", en: "Stop learning", fr: "Ne plus rien apprendre" }
         ],
         a: 1,
-        explanation: { de: "KI kann helfen — aber du solltest es verstehen und ehrlich bleiben.", en: "AI can help — but you should understand it and be honest." },
-        wusstest: { de: "Wenn du’s nicht verstehst: frag nach einer einfacheren Erklärung.", en: "If you don’t understand: ask for a simpler explanation." },
+        explanation: { de: "KI kann helfen — aber du solltest es verstehen und ehrlich bleiben.", en: "AI can help — but you should understand it and be honest.", fr: "L'IA peut aider — mais vous devez comprendre et être honnête." },
+        wusstest: { de: "Wenn du’s nicht verstehst: frag nach einer einfacheren Erklärung.", en: "If you don’t understand: ask for a simpler explanation.", fr: "Si vous ne comprenez pas : demandez une explication plus simple." },
         source: { label: "UNICEF – Children & technology (Startseite)", url: "https://www.unicef.org/" }
       }
     ]
   },
 
   4: {
-    title: { de: "Wahr oder Fake?", en: "True or Fake?" },
+    title: { de: "Wahr oder Fake?", en: "True or Fake?", fr: "Vrai ou faux?" },
     summary: (ratio) => {
-      if (ratio >= 0.8) return { de: { title: "📰 Super Fakten-Filter!", text: "Mega! Du prüfst, bevor du glaubst." }, en: { title: "📰 Great fact filter!", text: "Awesome! You check before you believe." } };
-      if (ratio >= 0.5) return { de: { title: "✅ Gute Checks!", text: "Sehr gut! Mit Routine wirst du richtig stark." }, en: { title: "✅ Good checks!", text: "Very good! With routine you’ll be super strong." } };
-      return { de: { title: "🔥 Dranbleiben!", text: "Du lernst gerade, wie man besser prüft. Weiter so!" }, en: { title: "🔥 Keep going!", text: "You’re learning how to verify. Keep going!" } };
+      if (ratio >= 0.8) return { de: { title: "📰 Super Fakten-Filter!", text: "Mega! Du prüfst, bevor du glaubst." }, en: { title: "📰 Great fact filter!", text: "Awesome! You check before you believe." }, fr: { title: "📰 Super filtre à faits!", text: "Génial ! Vous vérifiez avant de croire." } };
+      if (ratio >= 0.5) return { de: { title: "✅ Gute Checks!", text: "Sehr gut! Mit Routine wirst du richtig stark." }, en: { title: "✅ Good checks!", text: "Very good! With routine you’ll be super strong." }, fr: { title: "✅ Bonnes vérifications!", text: "Très bien ! Avec de la routine, vous deviendrez super fort." } };
+      return { de: { title: "🔥 Dranbleiben!", text: "Du lernst gerade, wie man besser prüft. Weiter so!" }, en: { title: "🔥 Keep going!", text: "You’re learning how to verify. Keep going!" }, fr: { title: "🔥 Continuez!", text: "Vous apprenez à vérifier. Continuez !" } };
     },
     questions: [
       {
         id: "k_med_q01",
         type: "mc",
-        q: { de: "Was ist ein guter Mini-Check, bevor du etwas teilst?", en: "What’s a good mini-check before you share something?" },
+        q: { de: "Was ist ein guter Mini-Check, bevor du etwas teilst?", en: "What’s a good mini-check before you share something?", fr: "Quel est un bon mini-vérification avant de partager quelque chose ?" },
         choices: [
-          { de: "Nur die Überschrift lesen", en: "Only read the headline" },
-          { de: "Quelle + Datum prüfen", en: "Check source + date" },
-          { de: "Sofort weiterleiten", en: "Forward immediately" }
+          { de: "Nur die Überschrift lesen", en: "Only read the headline", fr: "Lire seulement le titre" },
+          { de: "Quelle + Datum prüfen", en: "Check source + date", fr: "Vérifier la source et la date" },
+          { de: "Sofort weiterleiten", en: "Forward immediately", fr: "Transférer immédiatement" }
         ],
         a: 1,
-        explanation: { de: "Quelle und Datum helfen zu sehen, ob es echt und aktuell ist.", en: "Source and date help you see if it’s real and current." },
-        wusstest: { de: "Wenn du’s nicht prüfen kannst: lieber nicht teilen.", en: "If you can’t verify it: don’t share it." },
+        explanation: { de: "Quelle und Datum helfen zu sehen, ob es echt und aktuell ist.", en: "Source and date help you see if it’s real and current.", fr: "La source et la date aident à voir si c'est réel et actuel." },
+        wusstest: { de: "Wenn du’s nicht prüfen kannst: lieber nicht teilen.", en: "If you can’t verify it: don’t share it.", fr: "Si vous ne pouvez pas le vérifier : ne le partagez pas." },
         source: { label: "klicksafe – Nachrichten prüfen", url: "https://www.klicksafe.de/" }
       },
       {
         id: "k_med_q02",
         type: "truefalse",
-        q: { de: "Viele Likes bedeuten automatisch: stimmt!", en: "Lots of likes automatically means it’s true!" },
+        q: { de: "Viele Likes bedeuten automatisch: stimmt!", en: "Lots of likes automatically means it’s true!", fr: "Beaucoup de likes signifient automatiquement que c'est vrai !" },
         a: false,
-        explanation: { de: "Likes sind kein Beweis. Dinge gehen viral, weil sie spannend sind.", en: "Likes are not proof. Things go viral because they’re exciting." },
-        wusstest: { de: "Wenn es dich sehr aufregt: Pause machen und prüfen.", en: "If it makes you upset: pause and verify." },
+        explanation: { de: "Likes sind kein Beweis. Dinge gehen viral, weil sie spannend sind.", en: "Likes are not proof. Things go viral because they’re exciting.", fr: "Les likes ne sont pas une preuve. Les choses deviennent virales parce qu'elles sont excitantes." },
+        wusstest: { de: "Wenn es dich sehr aufregt: Pause machen und prüfen.", en: "If it makes you upset: pause and verify.", fr: "Si cela vous énerve beaucoup : faites une pause et vérifiez." },
         source: { label: "EU Digital Strategy (Startseite)", url: "https://digital-strategy.ec.europa.eu/" }
       },
       {
         id: "k_med_q03",
         type: "scenario",
-        q: { de: "Ein Screenshot zeigt „Beweis!“. Keine Quelle. Was machst du?", en: "A screenshot shows “proof!”. No source. What do you do?" },
+        q: { de: "Ein Screenshot zeigt „Beweis!“. Keine Quelle. Was machst du?", en: "A screenshot shows “proof!”. No source. What do you do?", fr: "Une capture d'écran montre « preuve ! ». Pas de source. Que faites-vous ?" },
         choices: [
-          { de: "Glauben und teilen", en: "Believe and share" },
-          { de: "Nach Original-Link suchen / Erwachsene fragen", en: "Look for the original link / ask an adult" },
-          { de: "Nichts mehr glauben", en: "Believe nothing ever" }
+          { de: "Glauben und teilen", en: "Believe and share", fr: "Croire et partager" },
+          { de: "Nach Original-Link suchen / Erwachsene fragen", en: "Look for the original link / ask an adult", fr: "Chercher le lien original / demander à un adulte" },
+          { de: "Nichts mehr glauben", en: "Believe nothing ever", fr: "Ne plus jamais croire" }
         ],
         a: 1,
-        explanation: { de: "Screenshots kann man fälschen oder aus dem Kontext reißen.", en: "Screenshots can be faked or taken out of context." },
-        wusstest: { de: "Besser: Originalquelle suchen.", en: "Better: find the original source." },
+        explanation: { de: "Screenshots kann man fälschen oder aus dem Kontext reißen.", en: "Screenshots can be faked or taken out of context.", fr: "Les captures d'écran peuvent être falsifiées ou sorties de leur contexte." },
+        wusstest: { de: "Besser: Originalquelle suchen.", en: "Better: find the original source.", fr: "Mieux : trouver la source originale." },
         source: { label: "klicksafe – Bilder & Fakes", url: "https://www.klicksafe.de/" }
       }
     ]
